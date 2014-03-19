@@ -1,4 +1,4 @@
-polling
+Portfolio
 =======
 
-Online pilot polling application with Grails 2.3.6 and Twitter Bootstrap3
+Online portfolio application with Grails 2.3.7 and Twitter Bootstrap3
