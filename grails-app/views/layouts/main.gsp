@@ -54,11 +54,6 @@
                     <sec:ifNotLoggedIn>
                         <li><a href="${g.createLink(controller: 'login')}" class="login-btn">Login</a></li>
                     </sec:ifNotLoggedIn>
-                    <sec:ifLoggedIn>
-                    <li class="devider">&nbsp;</li>
-                    <li><a href="${g.createLink(controller: 'admin')}" class="login-btn">Create User</a></li>
-                    </sec:ifLoggedIn>
-
                 </ul>
             </div>
         </div>

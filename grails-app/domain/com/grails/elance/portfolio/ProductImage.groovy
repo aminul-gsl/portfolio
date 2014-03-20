@@ -1,4 +1,4 @@
-package com.grails.custom.portfolio
+package com.grails.elance.portfolio
 
 class ProductImage {
     String name
