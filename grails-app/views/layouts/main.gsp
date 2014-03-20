@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="${resource(dir: 'css/bootstrap/', file: 'bootstrap-modal.css')}" type="text/css">
         <link rel="stylesheet" href="${resource(dir: 'css/bootstrap', file: 'bootstrap-modal-bs3patch.css')}" type="text/css">
 
+
         %{--css for pop up--}%
         %{--<link rel="stylesheet" href="${resource(dir: 'css/custom/popup', file: 'jquery.ui.all.css')}" type="text/css">--}%
         %{--<link rel="stylesheet" href="${resource(dir: 'css/custom/popup', file: 'demos.css')}" type="text/css">--}%
@@ -183,9 +184,11 @@
     </div>
 
     <!-- JS Global Compulsory -->
-    %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery-1.8.2.min.js')}"></script>--}%
+    <script type="text/javascript" src="${resource(dir: 'js/validate', file: 'jquery.validate.min.js')}"></script>
     %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'modernizr.custom.js')}"></script>--}%
-    <script type="text/javascript" src="${resource(dir: 'js/bootstrap', file: 'bootstrap.min.js')}"></script>
+
+    <script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery-1.8.2.min.js')}"></script>
+
 
     <!-- JS Implementing Plugins -->
     %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'repeatable-fields.js')}"></script>--}%
