@@ -7,6 +7,9 @@
 </head>
 <body>
 <div class="container">
+    <g:if test='${flash.message}'>
+        <div class='login_message alert-danger '> <i class="icon-bell red"> <b> ${flash.message} </b> </i></div>
+    </g:if>
     <div class="row">
         <div class="col-md-12">
             <div class="row">
