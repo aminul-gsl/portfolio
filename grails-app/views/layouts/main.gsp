@@ -140,6 +140,7 @@
         </div>
     </div>--}%
     <!-- footerBottomSection -->
+
     <div class="footerBottomSection">
         <div class="container">
         &copy; 2014, Allright reserved. <a href="#">Terms and Condition</a> | <a href="#">Privacy Policy</a>
