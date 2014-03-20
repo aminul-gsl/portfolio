@@ -1,4 +1,4 @@
-package com.com.grails.elance.portfolio.general
+package com.grails.elance.portfolio.general
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
