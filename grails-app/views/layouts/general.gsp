@@ -156,13 +156,13 @@
 %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.flexslider-min.js')}"></script>--}%
 %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'modernizr.js')}"></script>--}%
 %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.cslider.js')}"></script>--}%
-%{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'back-to-top.js')}"></script>--}%
-%{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.sticky.js')}"></script>--}%
+<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'back-to-top.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.sticky.js')}"></script>
 
 
 <!-- JS Page Level -->
-%{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'app.js')}"></script>--}%
-%{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'index.js')}"></script>--}%
+<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'app.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'index.js')}"></script>
 
 %{--js for pop up--}%
 
@@ -178,14 +178,14 @@
 %{--<script type="text/javascript" src="${resource(dir: 'js/custom/popup', file: 'jquery.ui.effect.js')}"></script>--}%
 
 
-%{--<script type="text/javascript">
+<r:script>
     jQuery(document).ready(function() {
         App.init();
         App.initSliders();
         Index.initParallaxSlider();
     });
 
-</script>--}%
+</r:script>
 
 <r:layoutResources />
 </body>

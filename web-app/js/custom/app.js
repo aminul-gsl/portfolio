@@ -24,12 +24,12 @@ var App = function () {
     }
 
     function handleBootstrap() {
-        jQuery('.carousel').carousel({
+        /*jQuery('.carousel').carousel({
             interval: 15000,
             pause: 'hover'
         });
         jQuery('.tooltips').tooltip();
-        jQuery('.popovers').popover();
+        jQuery('.popovers').popover();*/
     }
 
     function handleMisc() {
