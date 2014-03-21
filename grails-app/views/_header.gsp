@@ -21,7 +21,7 @@
                         <li><a href="${g.createLink(controller: 'user',action: 'profile')}">My Profile</a></li>
                     </sec:access>
                     <sec:access controller='user' action='list'>
-                        <li><a href="${g.createLink(controller: 'user',action: 'list')}">Admin User</a></li>
+                        <li><a href="${g.createLink(controller: 'user',action: 'create')}">Admin User</a></li>
                     </sec:access>
 
                     <li><a href="#contact">Contact</a></li>
