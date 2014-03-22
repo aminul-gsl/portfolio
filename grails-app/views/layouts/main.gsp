@@ -230,6 +230,6 @@
                 } );
             } );
         </script>
-
+        <r:layoutResources />
 </body>
 </html>
