@@ -80,7 +80,7 @@ class UserController {
     @Secured(['ROLE_SUPER_ADMIN'])
     def create() {
         //show User Create form
-        render (view:'/admin/create')
+        render (view:'/admin/registration')
     }
     @Secured(['ROLE_SUPER_ADMIN'])
     def saveAdmin() {
@@ -96,20 +96,20 @@ class UserController {
         }
         if (!params.username){
             flash.message = "Please fill all required fields"
-            render (view:'/admin/create')
+            render (view:'/admin/registration')
             return
         }
         User user = new User(params)
         user.lastLogin=new Date();
         if (!user.validate()) {
-            render (view: '/admin/create',model: [user: user])
+            render (view: '/admin/registration',model: [user: user])
             return
         }
         //save user
         User savedUser = user.save()
         if (!savedUser) {
             flash.message = "Unable to save admin User"
-            render (view: '/admin/create',model: [user: user])
+            render (view: '/admin/registration',model: [user: user])
             return
         }
 

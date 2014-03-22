@@ -7,7 +7,7 @@ class AdminController {
 
     @Secured(['ROLE_SUPER_ADMIN'])
     def index() {
-        render (view:'/admin/create')
+        render (view:'/admin/registration')
     }
     @Secured(['ROLE_SUPER_ADMIN'])
     def save(){
@@ -15,7 +15,7 @@ class AdminController {
       List<User> userList=User.findAllByUsername(params.userName)
         if(userList.size()>0){
             flash.message = "User Name already exist!"
-            render (view:'/admin/create')
+            render (view:'/admin/registration')
         } else{
         user.username=params.userName
         user.firstName=params.firstName
@@ -27,7 +27,7 @@ class AdminController {
         user.enabled=params.enabled
 
         if(!user.save())   {
-            render (view:'/admin/create')
+            render (view:'/admin/registration')
         }else{
             flash.message = "User Created successfully"
             render (view:'/dashboard/index')
