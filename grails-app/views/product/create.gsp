@@ -2,15 +2,9 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>Hajj Management | Admin</title>
+    <title>Create Product  | Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="layout" content="main">
-
-    <title>User List</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-
-
     <link href="css/hajj-theme.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="css/application.css" />
@@ -35,7 +29,7 @@
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
     <div class="icons pull-left">
-        <h2 style="display: inline-block; margin: 0;">Add User</h2>
+        <h2 style="display: inline-block; margin: 0;">Add Product</h2>
     </div>
     <div class="toolbar pull-right">
         <div class="btn-group">
@@ -51,7 +45,7 @@
 <div id="data" class="panel-body">
 
 <div class="Resumes form">
-<form  method="post" accept-charset="utf-8" id="ResumesAddForm" class="form-horizontal" action='${resource(dir:'user', file:'saveAdmin')}'>
+<form  method="post" accept-charset="utf-8" id="" class="form-horizontal" action='${resource(dir:'', file:'')}'>
 
 
         <div style="display:none;">
@@ -59,51 +53,23 @@
 </div>
 <fieldset>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">User Name</label>
+    <label class="col-md-2 control-label" for="name">Name</label>
     <div class="col-md-8 required">
-        <input name="username" class="form-control" id="username" placeholder="Please enter User Name"/>
+        <input name="name" class="form-control" id="name" placeholder="Please enter Product Name"/>
     </div>
 </div>
     <div class="form-group required">
-        <label class="col-md-2 control-label" for="post_id">First Name</label>
+        <label class="col-md-2 control-label" for="description">Description</label>
         <div class="col-md-8 required">
-            <input name="firstName" class="form-control" id="firstName" placeholder="Please enter First Name"/>
+            <textarea class="form-control" name="description" id="description"  placeholder="some description added here"></textarea>
         </div>
     </div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">Last Name</label>
-    <div class="col-md-8 required">
-        <input name="lastName" class="form-control" id="lastName" placeholder="Please enter Last Name"/>
+    <div class="form-group">
+        <label for="price" class="col-md-2 control-label">Contact #</label>
+        <div class="col-md-8">
+            <input type="text" name="price" class="form-control" id="price" placeholder="Please enter price"/>
+        </div>
     </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">Email</label>
-    <div class="col-md-8 required">
-        <input name="email" class="form-control" id="email" placeholder="Please enter Email Id"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">Telephone</label>
-    <div class="col-md-8 required">
-        <input name="telephone" class="form-control" id="telephone" placeholder="Please enter User Name"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">User Name</label>
-    <div class="col-md-8 required">
-        <input name="password" class="form-control" id="password" placeholder="Please enter User Name"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">User Name</label>
-    <div class="col-md-8 required">
-        <input name="password" class="form-control" id="password" placeholder="Please enter User Name"/>
-    </div>
-</div>
-    <div class="x" style="padding-left: 115px">
-        <label>Is Active</label> <g:checkBox name="enabled" id="enabled" value="true"/>
-    </div>
-
 
 <div class="form-group">
     <label for="title" class="col-md-2 control-label">&nbsp;</label>

@@ -7,17 +7,6 @@
     <title>User List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-
-
-    %{--<link href="css/hajj-theme.css" rel="stylesheet" />--}%
-
-    %{--<link rel="stylesheet" type="text/css" href="css/application.css" />--}%
-
-
-
-    <!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 </head>
 <!-- HTML code from Bootply.com editor -->
 <body>
