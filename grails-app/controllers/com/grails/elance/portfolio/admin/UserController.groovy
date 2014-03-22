@@ -126,7 +126,7 @@ class UserController {
         flash.message = "Admin user created successfully"
         redirect(action: 'list')
     }
-
+    @Secured(['permitAll'])
     def checkAvailable(String userName){
         def available
         if( User.findByUsername(userName) ) {

@@ -8,13 +8,6 @@
 
     <title>User List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-
-
-    <link href="css/hajj-theme.css" rel="stylesheet" />
-
-    <link rel="stylesheet" type="text/css" href="css/application.css" />
-
     <!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -68,7 +61,7 @@
 <div id="data" class="panel-body">
 
 <div class="Resumes form">
-<form  method="post" accept-charset="utf-8" id="ResumesAddForm" class="form-horizontal" action='${resource(dir:'user', file:'saveAdmin')}'>
+<form  method="post" accept-charset="utf-8" id="createAdmin" class="form-horizontal" action='${resource(dir:'user', file:'saveAdmin')}'>
 
 
         <div style="display:none;">
@@ -79,6 +72,7 @@
     <label class="col-md-2 control-label" for="post_id">User Name</label>
     <div class="col-md-8 required">
         <input name="username" class="form-control" id="username" placeholder="Please enter User Name"/>
+        <span id="somehiddendiv" style="display: none; color: mediumseagreen"/>
     </div>
 </div>
     <div class="form-group required">
@@ -140,7 +134,69 @@
 
 <!--/content end-->
 
+<r:script>
+    jQuery(function ($) {
+        $('#createAdmin').validate({
+            errorElement: 'span',
+            rules: {
+                fullName: {
+                    required: true
+                },
+                username: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                        email:true
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                confirm: {
+                    required: true,
+                    equalTo: "#password"
+                }
+            } ,
+            messages: {
+                fullName: {
+                    required: "Provide your full name"
+                },
+                username: {
+                    required: "Select a username"
+                },
+                email: {
+                    required: "Provide your email",
+                        email: "Email not valid."
+                },
 
+                password: {
+                    required: "Specify a password.",
+                    minlength: "Minimum 6 character."
+                }
+            }
+        });
+        $("#username").blur(function(){
+            $("#somehiddendiv").html(" ");
+            if($(this).length > 0) {
+                var url = "${createLink(controller:'user', action:'checkAvailable')}"
+                 // async ajax request pass username entered as id parameter
+                 $.getJSON( url, { userName:$(this).val() }, function(json){
+                    if(!json.available) {
+                          // highlight field so user knows there's a problem
+                          $("#username").css("border", "1px solid red");
+                          // populate a hidden div on page and fill and display it..
+                          $("#somehiddendiv").html("Username already in use").show();
+                    } else {
+                        $("#username").css("border", "1px solid green");
+                        $("#somehiddendiv").html("Available").show();
+                    }
+                });
+            }
+
+        });
+    });
+</r:script>
 <!-- JS -->
 </body>
 </html>
