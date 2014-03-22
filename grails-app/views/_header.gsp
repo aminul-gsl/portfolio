@@ -22,7 +22,12 @@
                     <sec:access controller='user' action='list'>
                         <li><a href="${g.createLink(controller: 'user',action: 'create')}">Admin User</a></li>
                     </sec:access>
-                    <li class="active"><a href="${g.createLink(uri: '/')}">Portfolios</a></li>
+                    <sec:access controller='portfolio' action='list'>
+                        <li><a href="${g.createLink(controller: 'portfolio',action: 'list')}">Portfolios</a></li>
+                    </sec:access>
+                    <sec:access controller='product' action='list'>
+                        <li><a href="${g.createLink(controller: 'product',action: 'list')}">Products</a></li>
+                    </sec:access>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

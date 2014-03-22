@@ -129,4 +129,19 @@ class UserController {
         response.contentType = "application/json"
         render """{"available":${available}}"""
     }
+
+
+        @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
+        def showRegistration(){
+            GrailsUser loggedUser = springSecurityService.principal
+            if(!loggedUser){
+                redirect(controller: 'login')
+            }
+            User user = User.read(loggedUser.id)
+            if(!user){
+                redirect(controller: 'login')
+            }
+            //show profile information with update link of profile
+            render(view: '/admin/create',model: [user:user])
+        }
 }

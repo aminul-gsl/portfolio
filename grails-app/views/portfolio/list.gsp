@@ -55,7 +55,7 @@
         <div class="btn-group">
 
             %{--add the create page--}%
-            <a href="${g.createLink(controller: 'user',action: 'showRegistration')}" class="btn btn-primary">
+            <a href="${g.createLink(controller: 'portfolio',action: 'showCreateForm')}" class="btn btn-primary">
                 <i class="fa fa-plus"></i>
             </a>
             %{--add the list page--}%

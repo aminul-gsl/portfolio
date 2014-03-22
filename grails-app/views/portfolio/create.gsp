@@ -39,7 +39,7 @@
     </div>
     <div class="toolbar pull-right">
         <div class="btn-group">
-            <a href="${g.createLink(controller: 'user',action: 'create')}" class="btn btn-primary">
+            <a href="${g.createLink(controller: 'portfolio',action: 'list')}" class="btn btn-primary">
                 <i class="fa fa-list"></i>
             </a>
             <a href="#data" data-toggle="collapse" class="accordion-toggle minimize-box btn btn-primary">

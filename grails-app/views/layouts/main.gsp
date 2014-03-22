@@ -46,7 +46,16 @@
             }
         </style>
 	</head>
+
 	    <body>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+                $('#example').dataTable( {
+                    "aaSorting": [[ 4, "desc" ]]
+                } );
+            } );
+        </script>
+
         <div class="top">
         <div class="container">
             <div class="row-fluid">
@@ -211,25 +220,18 @@
         <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'bootstrap-datepicker.js')}"></script>
 
 
-    <r:script>
+        <r:script>
         jQuery(document).ready(function() {
             App.init();
             App.initSliders();
             Index.initParallaxSlider();
         });
 
-    </r:script>
+        </r:script>
 
 
 
 
-        <script type="text/javascript" charset="utf-8">
-            $(document).ready(function() {
-                $('#example').dataTable( {
-                    "aaSorting": [[ 4, "desc" ]]
-                } );
-            } );
-        </script>
 
-</body>
+        </body>
 </html>

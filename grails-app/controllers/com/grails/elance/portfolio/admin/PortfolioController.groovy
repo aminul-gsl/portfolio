@@ -1,22 +1,18 @@
-package com.grails.elance.portfolio.general
+package com.grails.elance.portfolio.admin
 
 import com.grails.custom.security.User
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.userdetails.GrailsUser
 
 
-@Secured(['permitAll'])
-class ProductController {
+class PortfolioController {
     def springSecurityService
-    def index() {
-        render(view: 'product')
-    }
-
-    def detail() {
-        render(view: 'detail')
-    }
-
     @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
+    def index() {
+         redirect(action: 'portfolio')
+
+    }
+    @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
     def list() {
         GrailsUser loggedUser = springSecurityService.principal
         if(!loggedUser){
@@ -27,7 +23,7 @@ class ProductController {
             redirect(controller: 'login')
         }
         //show profile information with update link of profile
-        render(view: '/product/list',model: [user:user])
+        render(view: '/portfolio/list',model: [user:user])
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
     def showCreateForm(){
@@ -40,7 +36,6 @@ class ProductController {
             redirect(controller: 'login')
         }
         //show profile information with update link of profile
-        render(view: '/product/create',model: [user:user])
+        render(view: '/portfolio/create',model: [user:user])
     }
-
 }
