@@ -1,5 +1,6 @@
 package com.grails.elance.portfolio.general
 
+import com.grails.elance.portfolio.admin.ProductController
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

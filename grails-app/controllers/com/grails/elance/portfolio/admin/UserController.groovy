@@ -75,12 +75,20 @@ class UserController {
     @Secured(['ROLE_SUPER_ADMIN'])
     def list() {
         //will show User list including Create New User button and edit/delete existing user
-        render (view:'listUser')
+        render (view:'/admin/userlist')
     }
     @Secured(['ROLE_SUPER_ADMIN'])
     def create() {
-        //show User Create form
-        render (view:'/admin/registration')
+        GrailsUser loggedUser = springSecurityService.principal
+        if(!loggedUser){
+            redirect(controller: 'login')
+        }
+        User user = User.read(loggedUser.id)
+        if(!user){
+            redirect(controller: 'login')
+        }
+        //show profile information with update link of profile
+        render(view: '/admin/create',model: [user:user])
     }
     @Secured(['ROLE_SUPER_ADMIN'])
     def saveAdmin() {
@@ -96,20 +104,20 @@ class UserController {
         }
         if (!params.username){
             flash.message = "Please fill all required fields"
-            render (view:'/admin/registration')
+            render (view:'/admin/userlist')
             return
         }
         User user = new User(params)
         user.lastLogin=new Date();
         if (!user.validate()) {
-            render (view: '/admin/registration',model: [user: user])
+            render (view: '/admin/userlist',model: [user: user])
             return
         }
         //save user
         User savedUser = user.save()
         if (!savedUser) {
             flash.message = "Unable to save admin User"
-            render (view: '/admin/registration',model: [user: user])
+            render (view: '/admin/userlist',model: [user: user])
             return
         }
 
@@ -131,17 +139,5 @@ class UserController {
     }
 
 
-        @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
-        def showRegistration(){
-            GrailsUser loggedUser = springSecurityService.principal
-            if(!loggedUser){
-                redirect(controller: 'login')
-            }
-            User user = User.read(loggedUser.id)
-            if(!user){
-                redirect(controller: 'login')
-            }
-            //show profile information with update link of profile
-            render(view: '/admin/create',model: [user:user])
-        }
+
 }

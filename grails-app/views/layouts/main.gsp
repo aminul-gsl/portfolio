@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'datepicker.css')}" type="text/css">
         <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'responsive-tables.css')}" type="text/css">
         <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'responsive-tables.css')}" type="text/css">
-        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'hajj-theme.css')}" type="text/css">
+        %{--<link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'hajj-theme.css')}" type="text/css">--}%
 
 
 
@@ -44,6 +44,7 @@
                 /*height: 100%;*/
                 overflow-x: hidden;
             }
+
         </style>
 	</head>
 
@@ -56,37 +57,15 @@
             } );
         </script>
 
-        <div class="top">
-        <div class="container">
-            <div class="row-fluid">
-                <ul class="phone-mail">
-                <sec:ifLoggedIn>
-                    <li><i class="fa fa-envelope"></i><span>Wellcome <sec:loggedInUserInfo field="username"/></span></li>
-                </sec:ifLoggedIn>
-                <sec:ifNotLoggedIn>
-                    <li><i class="fa fa-envelope"></i><span>Wellcome Guest</span></li>
-                </sec:ifNotLoggedIn>
-                </ul>
-                <ul class="loginbar">
-                    <li><a href="#" class="login-btn">Help</a></li>
-                    <li class="devider">&nbsp;</li>
-                    <sec:ifLoggedIn>
-                        <li><a href="${g.createLink(controller: 'logout')}" class="login-btn">Log out</a></li>
-                    </sec:ifLoggedIn>
-                    <sec:ifNotLoggedIn>
-                        <li><a href="${g.createLink(controller: 'login')}" class="login-btn">Login</a></li>
-                    </sec:ifNotLoggedIn>
-                </ul>
-            </div>
-        </div>
-    </div>
+
 
     <!-- topHeaderSection -->
-    <g:render template="/header"/>
 
+    <g:render template="/header"/>
+        %{--<div id="body-container">--}%
 
         <g:layoutBody/>
-
+%{--</div>--}%
     <!-- footerTopSection -->
     %{--<div class="footerTopSection">
         <div class="container">
@@ -224,15 +203,15 @@
         <r:script>
         jQuery(document).ready(function() {
             App.init();
-            App.initSliders();
-            Index.initParallaxSlider();
+//            App.initSliders();
+//            Index.initParallaxSlider();
         });
 
         </r:script>
 
 
 
-
+        <r:layoutResources />
 
         </body>
 </html>

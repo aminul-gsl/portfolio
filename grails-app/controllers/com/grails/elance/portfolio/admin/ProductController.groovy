@@ -1,4 +1,4 @@
-package com.grails.elance.portfolio.general
+package com.grails.elance.portfolio.admin
 
 import com.grails.custom.security.User
 import grails.plugin.springsecurity.annotation.Secured
@@ -9,7 +9,7 @@ import grails.plugin.springsecurity.userdetails.GrailsUser
 class ProductController {
     def springSecurityService
     def index() {
-        render(view: 'product')
+        redirect(action: 'list')
     }
 
     def detail() {
@@ -30,7 +30,7 @@ class ProductController {
         render(view: '/product/list',model: [user:user])
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
-    def showCreateForm(){
+    def create(){
         GrailsUser loggedUser = springSecurityService.principal
         if(!loggedUser){
             redirect(controller: 'login')

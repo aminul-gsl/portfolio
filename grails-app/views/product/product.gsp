@@ -9,7 +9,7 @@
 <body>
 
 <!-- bodySection -->
-<div class="topHeaderSection">
+<div class="topHeaderSection breadcrumbs">
     <div class="header">
         <div class="container">
             <div class="navbar-header">
@@ -22,9 +22,9 @@
                 <a class="navbar-brand" href="${g.createLink(uri: '/')}"><img src="${resource(dir: 'images/custom', file: 'logo.png')}" alt="Portfolio solution" /></a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                       <li class="active"><a href="${g.createLink(uri: '/')}">Portfolios</a></li>
-                    <li><a href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}"> Products</a></li>
+                <ul class="nav navbar-nav navbar-right breadcrumb">
+                       <li ><a href="${g.createLink(uri: '/')}">Portfolios</a></li>
+                    <li class="active"><a href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}"> Products</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

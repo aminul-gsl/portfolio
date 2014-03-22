@@ -31,33 +31,11 @@
         /*height: 100%;*/
         overflow-x: hidden;
     }
+
     </style>
 </head>
 <body>
-<div class="top">
-    <div class="container">
-        <div class="row-fluid">
-            <ul class="phone-mail">
-                <sec:ifLoggedIn>
-                    <li><i class="fa fa-envelope"></i><span>Wellcome <sec:loggedInUserInfo field="username"/></span></li>
-                </sec:ifLoggedIn>
-                <sec:ifNotLoggedIn>
-                    <li><i class="fa fa-envelope"></i><span>Wellcome Guest</span></li>
-                </sec:ifNotLoggedIn>
-            </ul>
-            <ul class="loginbar">
-                <li><a href="#" class="login-btn">Help</a></li>
-                <li class="devider">&nbsp;</li>
-                <sec:ifLoggedIn>
-                    <li><a href="${g.createLink(controller: 'logout')}" class="login-btn">Log out</a></li>
-                </sec:ifLoggedIn>
-                <sec:ifNotLoggedIn>
-                    <li><a href="${g.createLink(controller: 'login')}" class="login-btn">Login</a></li>
-                </sec:ifNotLoggedIn>
-            </ul>
-        </div>
-    </div>
-</div>
+<g:render template="/header"/>
 
 <!-- topHeaderSection -->
 <g:layoutBody/>
@@ -181,8 +159,8 @@
 <r:script>
     jQuery(document).ready(function() {
         App.init();
-        App.initSliders();
-        Index.initParallaxSlider();
+//        App.initSliders();
+//        Index.initParallaxSlider();
     });
 
 </r:script>

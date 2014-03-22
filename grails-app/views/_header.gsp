@@ -1,35 +1,37 @@
-
-<div class="topHeaderSection">
-    <div class="header">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="${g.createLink(uri: '/')}"><img src="${resource(dir: 'images/custom', file: 'logo.png')}" alt="Portfolio solution" /></a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+<div class="top">
+    <div class="container">
+        <div class="row-fluid">
+            <ul class="phone-mail">
+                <sec:ifLoggedIn>
+                    <li><i class="fa fa-envelope"></i><span>Wellcome <sec:loggedInUserInfo field="username"/></span></li>
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    <li><i class="fa fa-envelope"></i><span>Wellcome Guest</span></li>
+                </sec:ifNotLoggedIn>
+            </ul>
+            <ul class="loginbar">
+                <li><a href="#" class="login-btn">Help</a></li>
+                <li class="devider">&nbsp;</li>
+                <sec:ifLoggedIn>
                     <sec:access controller='user' action='profile'>
                         <li><a href="${g.createLink(controller: 'user',action: 'profile')}">My Profile</a></li>
+                        <li class="devider">&nbsp;</li>
                     </sec:access>
                     <sec:access controller='user' action='list'>
-                        <li><a href="${g.createLink(controller: 'user',action: 'create')}">Admin User</a></li>
+                        <li><a href="${g.createLink(controller: 'user',action: 'list')}">Admin User</a></li>
+                        <li class="devider">&nbsp;</li>
                     </sec:access>
                     <sec:access controller='portfolio' action='list'>
-                        <li><a href="${g.createLink(controller: 'portfolio',action: 'list')}">Portfolios</a></li>
+                        <li><a href="${g.createLink(controller: 'portfolio',action: 'list')}">Portfolio</a></li>
+                        <li class="devider">&nbsp;</li>
                     </sec:access>
-                    <sec:access controller='product' action='list'>
-                        <li><a href="${g.createLink(controller: 'product',action: 'list')}">Products</a></li>
-                    </sec:access>
-                </ul>
-            </div><!--/.nav-collapse -->
+                    <li><a href="${g.createLink(controller: 'logout')}" class="login-btn">Log out</a></li>
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    <li><a href="${g.createLink(controller: 'login')}" class="login-btn">Login</a></li>
+                </sec:ifNotLoggedIn>
+            </ul>
         </div>
     </div>
 </div>
+

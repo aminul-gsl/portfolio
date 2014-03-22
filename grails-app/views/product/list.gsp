@@ -6,15 +6,6 @@
 
     <title>product List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-
-
-    <link href="css/hajj-theme.css" rel="stylesheet" />
-
-    <link rel="stylesheet" type="text/css" href="css/application.css" />
-
-
-
     <!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -23,7 +14,28 @@
 <body>
 <!-- Wrap all page content here -->
 <!-- Fixed navbar -->
-
+<div class="topHeaderSection breadcrumbs">
+    <div class="header">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="${g.createLink(uri: '/')}"><img src="${resource(dir: 'images/custom', file: 'logo.png')}" alt="Portfolio solution" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right breadcrumb">
+                    <li ><a href="#">Portfolio</a></li>
+                    <li ><a href="#">Product</a></li>
+                    <li class="active"><a href="${g.createLink(controller: 'portfolio',action: 'list')}">List</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
 
 <!-- Begin page content -->
 <div class="container">
@@ -41,14 +53,11 @@
         <div class="btn-group">
 
             %{--add the create page--}%
-            <a href="${g.createLink(controller: 'product',action: 'showCreateForm')}" class="btn btn-primary">
+            <a href="${g.createLink(controller: 'product',action: 'create')}" class="btn btn-primary">
                 <i class="fa fa-plus"></i>
             </a>
             %{--add the list page--}%
 
-            <a href="registration.gsp" data-toggle="collapse" class="accordion-toggle minimize-box btn btn-primary">
-                <i class="fa fa-chevron-up"></i>
-            </a>
         </div>
     </div>
 </div>
@@ -70,11 +79,11 @@
     <td>100.00</td>
     <td class="actions ">
         <div class="btn-group">
-            <a class="btn btn-warning" title="Download Resume" href="http://localhost/resumemgt/assets/resume/12/20140213_080820_12_f.docx" target="_blank">
+            <a class="btn btn-warning" title="Add Attachment" href="#">
                 <i class="fa fa-download"></i>
             </a>
-            <a class="btn btn-warning" href="http://localhost/resumemgt/Resumes/view/15"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="http://localhost/resumemgt/Resumes/delete/15"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
 </tr>
@@ -85,11 +94,11 @@
     <td>120.00</td>
     <td class="actions ">
         <div class="btn-group">
-            <a class="btn btn-warning" title="Download Resume" href="http://localhost/resumemgt/assets/resume/12/20140213_080820_12_f.docx" target="_blank">
+            <a class="btn btn-warning" title="Add Attachment" href="#">
                 <i class="fa fa-download"></i>
             </a>
-            <a class="btn btn-warning" href="http://localhost/resumemgt/Resumes/view/15"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="http://localhost/resumemgt/Resumes/delete/15"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
 </tr>
@@ -100,11 +109,11 @@
     <td>100.00</td>
     <td class="actions ">
         <div class="btn-group">
-            <a class="btn btn-warning" title="Download Resume" href="http://localhost/resumemgt/assets/resume/12/20140213_080820_12_f.docx" target="_blank">
+            <a class="btn btn-warning" title="Add Attachment" href="#">
                 <i class="fa fa-download"></i>
             </a>
-            <a class="btn btn-warning" href="http://localhost/resumemgt/Resumes/view/15"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="http://localhost/resumemgt/Resumes/delete/15"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
 </tr>
@@ -115,11 +124,11 @@
     <td>100.00</td>
     <td class="actions ">
         <div class="btn-group">
-            <a class="btn btn-warning" title="Download Resume" href="http://localhost/resumemgt/assets/resume/12/20140213_080820_12_f.docx" target="_blank">
+            <a class="btn btn-warning" title="Add Attachment" href="#">
                 <i class="fa fa-download"></i>
             </a>
-            <a class="btn btn-warning" href="http://localhost/resumemgt/Resumes/view/15"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="http://localhost/resumemgt/Resumes/delete/15"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
 </tr>
@@ -130,11 +139,11 @@
     <td>100.00</td>
     <td class="actions ">
         <div class="btn-group">
-            <a class="btn btn-warning" title="Download Resume" href="http://localhost/resumemgt/assets/resume/12/20140213_080820_12_f.docx" target="_blank">
+            <a class="btn btn-warning" title="Add Attachment" href="#">
                 <i class="fa fa-download"></i>
             </a>
-            <a class="btn btn-warning" href="http://localhost/resumemgt/Resumes/view/15"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="http://localhost/resumemgt/Resumes/delete/15"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
 </tr>

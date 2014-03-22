@@ -9,7 +9,7 @@ class PortfolioController {
     def springSecurityService
     @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
     def index() {
-         redirect(action: 'portfolio')
+         redirect(action: 'list')
 
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
@@ -26,7 +26,7 @@ class PortfolioController {
         render(view: '/portfolio/list',model: [user:user])
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
-    def showCreateForm(){
+    def create(){
         GrailsUser loggedUser = springSecurityService.principal
         if(!loggedUser){
             redirect(controller: 'login')

@@ -17,14 +17,35 @@
 <body>
 <!-- Wrap all page content here -->
 <!-- Fixed navbar -->
-
+<div class="topHeaderSection breadcrumbs">
+    <div class="header">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="${g.createLink(uri: '/')}"><img src="${resource(dir: 'images/custom', file: 'logo.png')}" alt="Portfolio solution" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right breadcrumb">
+                    <li ><a href="#">Portfolio</a></li>
+                    <li ><a href="#">Product</a></li>
+                    <li class="active"><a href="${g.createLink(controller: 'portfolio',action: 'create')}">Create</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
 
 <!-- Begin page content -->
 <div class="container">
 <div class="row">
       <div class="col-md-1"></div>
 
-<article class="col-md-10">
+<article class="col-md-12">
 <div id="main-content">
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
@@ -35,9 +56,6 @@
         <div class="btn-group">
             <a href="${g.createLink(controller: 'product',action: 'list')}" class="btn btn-primary">
                 <i class="fa fa-list"></i>
-            </a>
-            <a href="#data" data-toggle="collapse" class="accordion-toggle minimize-box btn btn-primary">
-                <i class="fa fa-chevron-up"></i>
             </a>
         </div>
     </div>
