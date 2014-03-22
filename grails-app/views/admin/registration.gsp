@@ -9,9 +9,9 @@
 
 
 
-    <link href="css/hajj-theme.css" rel="stylesheet" />
+    %{--<link href="css/hajj-theme.css" rel="stylesheet" />--}%
 
-    <link rel="stylesheet" type="text/css" href="css/application.css" />
+    %{--<link rel="stylesheet" type="text/css" href="css/application.css" />--}%
 
 
 
@@ -44,7 +44,7 @@
     </div>
 </aside>--}%
     <div class="col-md-1"></div>
-<article class="col-md-10">
+<article class="col-md-12">
 <div id="main-content">
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
