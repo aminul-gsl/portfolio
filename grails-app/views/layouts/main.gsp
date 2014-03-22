@@ -214,8 +214,8 @@
     <r:script>
         jQuery(document).ready(function() {
             App.init();
-            App.initSliders();
-            Index.initParallaxSlider();
+//            App.initSliders();
+//            Index.initParallaxSlider();
         });
 
     </r:script>
