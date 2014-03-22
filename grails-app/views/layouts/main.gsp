@@ -14,6 +14,19 @@
         <link rel="stylesheet" href="${resource(dir: 'css/bootstrap', file: 'bootstrap-modal-bs3patch.css')}" type="text/css">
 
 
+        %{--css for datatable--}%
+        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'DT_bootstrap.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'DT_ColVis.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'DT_TableTools.css')}" type="text/css">
+
+        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'datepicker.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'responsive-tables.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'responsive-tables.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'hajj-theme.css')}" type="text/css">
+
+
+
+
         %{--css for pop up--}%
         %{--<link rel="stylesheet" href="${resource(dir: 'css/custom/popup', file: 'jquery.ui.all.css')}" type="text/css">--}%
         %{--<link rel="stylesheet" href="${resource(dir: 'css/custom/popup', file: 'demos.css')}" type="text/css">--}%
@@ -140,6 +153,7 @@
         </div>
     </div>--}%
     <!-- footerBottomSection -->
+
     <div class="footerBottomSection">
         <div class="container">
         &copy; 2014, Allright reserved. <a href="#">Terms and Condition</a> | <a href="#">Privacy Policy</a>
@@ -149,9 +163,14 @@
 
     <!-- JS Global Compulsory -->
     <script type="text/javascript" src="${resource(dir: 'js/validate', file: 'jquery.validate.min.js')}"></script>
-    %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'modernizr.custom.js')}"></script>--}%
+    <script type="text/javascript" src="${resource(dir: 'js/custom', file: 'modernizr.custom.js')}"></script>
 
     <script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery-1.8.2.min.js')}"></script>
+
+
+
+        %{--for bootstrap--}%
+        <script type="text/javascript" src="${resource(dir: 'js/bootstrap', file: 'bootstrap.min.js')}"></script>
 
 
     <!-- JS Implementing Plugins -->
@@ -159,13 +178,13 @@
     %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.flexslider-min.js')}"></script>--}%
     %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'modernizr.js')}"></script>--}%
     %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.cslider.js')}"></script>--}%
-    %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'back-to-top.js')}"></script>--}%
-    %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.sticky.js')}"></script>--}%
+    <script type="text/javascript" src="${resource(dir: 'js/custom', file: 'back-to-top.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js/custom', file: 'jquery.sticky.js')}"></script>
 
 
     <!-- JS Page Level -->
-    %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'app.js')}"></script>--}%
-    %{--<script type="text/javascript" src="${resource(dir: 'js/custom', file: 'index.js')}"></script>--}%
+    <script type="text/javascript" src="${resource(dir: 'js/custom', file: 'app.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js/custom', file: 'index.js')}"></script>
 
         %{--js for pop up--}%
 
@@ -181,15 +200,36 @@
         %{--<script type="text/javascript" src="${resource(dir: 'js/custom/popup', file: 'jquery.ui.effect.js')}"></script>--}%
 
 
-    %{--<script type="text/javascript">
+            %{--js for datatable--}%
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.TableTools.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.ColVis.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.FixedColumns.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.bootstrap.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.tablesorter.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'responsive-tables.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'bootstrap-datepicker.js')}"></script>
+
+
+    <r:script>
         jQuery(document).ready(function() {
             App.init();
             App.initSliders();
             Index.initParallaxSlider();
         });
 
-    </script>--}%
+    </r:script>
 
-<r:layoutResources />
+
+
+
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+                $('#example').dataTable( {
+                    "aaSorting": [[ 4, "desc" ]]
+                } );
+            } );
+        </script>
+
 </body>
 </html>

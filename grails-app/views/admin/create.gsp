@@ -1,97 +1,232 @@
-<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
 <html>
 <head>
-    <meta name="layout" content="main"/>
-    <title>Portfolio App - Create </title>
-     <style>
-         .userDetails{
-             font-weight: bold;
-             font-size:x-large;
-             color: red;
-             padding: 2px 8px;
-             margin-top: 2px;
-         }
+    <title>Registration</title>
+    <meta charset="UTF-8"/>
+    <meta name="layout" content="main">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style type="text/css">
 
+    #container {
+        margin-top: 30px;
+        padding-bottom: 20px;
+        padding-left: 358px;
+        padding-right: 158px;
+    }
 
-     </style>
+    .demo form.registration input{
+        max-width: 300px;
+        border-radius:5px;
+        margin-right:10px;
+    }
+    .demo form.registration input:hover{
+
+        cursor:pointer;
+    }
+
+    .demo form.registration p{
+        font-size: 1.5em; color: #333333;
+    }
+    .error{color:red;display:inline;}
+    #navigation ul li a{color:white; padding-top:10px;}
+    #navigation ul li {margin-top:12px;}
+    .x{margin-top:10px;}
+    .x label{margin-top:7px; }
+
+    </style>
+    <r:require modules="jqueryvalidate"/>
 
 </head>
+
 <body>
-        <div class="container" >
-            <g:if test='${flash.message}'>
-                <div class='login_message alert-danger '> <i class="icon-bell red"> <b> ${flash.message} </b> </i></div>
-            </g:if>
-            <div class="col-md-8 col-lg-push-2" style="padding-top:100px;padding-bottom:100px;padding-left: 224px;">
-                   <g:form class="adminForm" method="post"action='save' controller="admin">
 
-                       <label class="userDetails">Enter User Details:</label> <g:textField name="userName" id="userName" class="form-control" placeholder="User Name" style="width: 58%"/>
-                   <g:textField name="firstName" id="firstName"  class="form-control" placeholder="First Name" style="width: 58%"/>
-                   <g:textField name="lastName" id="lastName" class="form-control" placeholder="Last Name" style="width: 58%"/>
-                   <input type="password" name="password" id="password" class="form-control" placeholder="Password" style="width: 58%" />
-                   <g:textField name="email" id="email" class="form-control" placeholder="Email" style="width: 58%"/>
+<div id="container">
+    <div class="abc" >
+        <!-- <img src="http://localhost:8080/edupal/static/images/edupal.png" width=100%">-->
+        <h2 style="color:#A3C651;">Create User</h2>
+        <form method="post" class="registration" action='${resource(dir:'user', file:'saveAdmin')}'>
+            <fieldset title="Registration">
 
-                   <g:textField name="tel" id="tel" class="form-control" placeholder="Telephone No" value="${tel}" style="width: 58%" />
-                   <g:checkBox name="enabled" id="enabled" value="true"/> <label>Select Status</label><br>
-                   <g:submitButton name="save" class="btn btn-lg btn-success btn-block" style="width: 58%"/>
+                <g:hasErrors bean="${user}">
+                    <div class="errors">
+                        <g:renderErrors bean="${user}"/>
+                    </div>
+                </g:hasErrors>
+                <div class="col-md-6" style="max-width:124px;">
+                    <div class="x">
 
-               </g:form>
+                        <label for="username">Username: *</label>
+                    </div>
+                    <div class="x">
+                        <label for="fullName">First Name: *</label>
+                    </div>
+                    <div class="x">
+                        <label for="fullName">Last Name: *</label>
+                    </div>
+                    <div class="x">
+
+                        <label for="email">E-mail: *</label>
+
+                    </div>
+                    <div class="x">
+
+                        <label for="email">Telephone: *</label>
+
+                    </div>
+                    <div class="x">
+
+                        <label for="password">Password: *</label>
+
+                    </div>
+                    <div class="x">
+                        <label for="confirm">Confirm Password: *</label>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="x">
+                        <input id="username" name="username" type="text" class="form-control"/>
+                        <span id="somehiddendiv" style="display: none; color: mediumseagreen"/>
+                    </div>
+                    <div class="x">
+                        <input id="firstName"  name="firstName" type="text" class="form-control"/>
+                    </div>
+                    <div class="x">
+                        <input id="lastName"  name="lastName" type="text" class="form-control"/>
+                    </div>
+                    <div class="x">
+                        <input id="email" name="email" type="text" class="form-control"/>
+                    </div>
+                    <div class="x">
+                        <input id="telephone"  name="telephone" type="text" class="form-control"/>
+                    </div>
+                    <div class="x">
+                        <input id="password" type="password" name="password" class="form-control" />
+                    </div>
+                    <div class="x">
+                        <input id="password" type="password" name="password" class="form-control" />
+                    </div>
+
+                    <div class="x">
+                        <g:checkBox name="enabled" id="enabled" value="true"/>  <label>Is Active</label><br>
+                    </div>
+                    <div class="x">
+                        <g:submitButton name="Submit" class="btn btn-lg btn-primary btn-block"/>
+                    </div>
+                </div>
+            </fieldset>
 
 
 
 
-            </div>
-
-            <div class="demo col-md-12">
+        </form>
 
 
-            </div>
-            </div>
+    </div>
 
-<script>
-    $(document).ready(function($){
-        $('.adminForm').validate({
+</div>
+
+
+<r:script>
+    jQuery(function ($) {
+        $('.registration').validate({
             errorElement: 'span',
             rules: {
-                userName: {
+                username: {
                     required: true
                 },
                 firstName: {
-                    required: true,
-                    minlength: 4,
-                    maxlength: 12
-                },
-
-                password: {
                     required: true
-
+                },
+                lastName: {
+                    required: true
                 },
                 email: {
                     required: true,
-                    email: true
-
+                    email:true
+                },
+                telephone: {
+                    required: true
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                confirm: {
+                    required: true,
+                    equalTo: "#password"
                 }
-
-
             } ,
             messages: {
-                userName: {
-                    required: "Please provide user Name"
+
+                username: {
+                    required: "Select a username"
                 },
                 firstName: {
-                    required: "Please provide user first name"
+                    required: "Provide user first name"
                 },
-                password: {
-                    required: "Please provide a password"
+                lastName: {
+                    required: "Provide user last name"
                 },
+
                 email: {
-                    required: "Please provide a email;exam: admin@mail.com"
-                }
-
-
-            }
-        });
+                    required: "Provide a email",
+                    email: "Email not valid."
+                },
+                telephone: {
+                    required: "Provide your telephone no."
+                },
+               password: {
+            required: "Specify a password.",
+                    minlength: "Minimum 6 character."
+        }
+    }
     });
-</script>
-</body>
+    $("#username").blur(function(){
+        if($(this).length > 0) {
+            var url = "${createLink(controller:'user', action:'checkAvailable')}"
+            // async ajax request pass username entered as id parameter
+            $.getJSON( url, { userName:$(this).val() }, function(json){
+                if(!json.available) {
+                    // highlight field so user knows there's a problem
+                    $("#username").css("border", "1px solid red");
+                    // populate a hidden div on page and fill and display it..
+                    $("#somehiddendiv").html("This ID is already taken").show();
+                } else {
+                    $("#username").css("border", "1px solid green");
+                    $("#somehiddendiv").html("Available").show();
+                }
+            });
+        }
 
+    });
+    })
+</r:script>
+</body>
 </html>

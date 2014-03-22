@@ -80,7 +80,7 @@ class UserController {
     @Secured(['ROLE_SUPER_ADMIN'])
     def create() {
         //show User Create form
-        render (view:'create')
+        render (view:'/admin/registration')
     }
     @Secured(['ROLE_SUPER_ADMIN'])
     def saveAdmin() {
@@ -96,19 +96,20 @@ class UserController {
         }
         if (!params.username){
             flash.message = "Please fill all required fields"
-            render (view:'create')
+            render (view:'/admin/registration')
             return
         }
         User user = new User(params)
+        user.lastLogin=new Date();
         if (!user.validate()) {
-            render (view: 'create',model: [user: user])
+            render (view: '/admin/registration',model: [user: user])
             return
         }
         //save user
         User savedUser = user.save()
         if (!savedUser) {
             flash.message = "Unable to save admin User"
-            render (view: 'create',model: [user: user])
+            render (view: '/admin/registration',model: [user: user])
             return
         }
 
@@ -116,5 +117,16 @@ class UserController {
         new UserRole(user: savedUser,role: adminRole).save()
         flash.message = "Admin user created successfully"
         redirect(action: 'list')
+    }
+
+    def checkAvailable(String userName){
+        def available
+        if( User.findByUsername(userName) ) {
+            available = false
+        } else {
+            available = true
+        }
+        response.contentType = "application/json"
+        render """{"available":${available}}"""
     }
 }

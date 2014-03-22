@@ -1,3 +1,4 @@
+
 <div class="topHeaderSection">
     <div class="header">
         <div class="container">
@@ -15,16 +16,13 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="${g.createLink(uri: '/')}">Home</a></li>
-
                     <sec:access controller='user' action='profile'>
                         <li><a href="${g.createLink(controller: 'user',action: 'profile')}">My Profile</a></li>
                     </sec:access>
                     <sec:access controller='user' action='list'>
-                        <li><a href="${g.createLink(controller: 'user',action: 'list')}">Admin User</a></li>
+                        <li><a href="${g.createLink(controller: 'user',action: 'create')}">Admin User</a></li>
                     </sec:access>
-
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="active"><a href="${g.createLink(uri: '/')}">Portfolios</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
