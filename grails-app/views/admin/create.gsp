@@ -109,17 +109,18 @@
         <input type="password" name="confirm" class="form-control" id="confirm" placeholder="Please Reenter The Password"/>
     </div>
 </div>
-
-
-    <div class="check">
-        <label  style="padding-top:0px;" class="col-md-2 control-label">Active Status</label>
-        <input type="radio" name="enabled" id="enabled" value="true"/> <label>Enable</label>
-        <input type="radio" name="enabled" id="enabled" value="false"/> <label>Disable</label>
-    </div>
-
+<div class="form-group required">
+    <label class="col-md-2 control-label">Admin Status</label>
+    <label class="radio-inline">
+        <input type="radio" name="enabled" id="radio1" value="true" checked=""> Enable
+    </label>
+    <label class="radio-inline">
+        <input type="radio" name="enabled" id="radio2" value="false"> Disable
+    </label>
+</div>
 
 <div class="form-group">
-    <label for="title" class="col-md-2 control-label">&nbsp;</label>
+    <label class="col-md-2 control-label">&nbsp;</label>
     <div class="col-md-8">
         <input type="submit" value="Submit" class="btn btn-primary"/>
     </div>

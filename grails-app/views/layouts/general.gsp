@@ -115,7 +115,7 @@
     </div>
 </div>--}%
 <!-- footerBottomSection -->
-<div class="footerBottomSection">
+<div class="footerBottomSection navbar-fixed-bottom">
     <div class="container">
     &copy; 2014, Allright reserved. <a href="#">Terms and Condition</a> | <a href="#">Privacy Policy</a>
         <div class="pull-right"> <a href="index.html"><img src="${resource(dir: 'images/custom', file: 'logo1.png')}" alt="My web solution" /></a></div>

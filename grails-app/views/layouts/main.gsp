@@ -135,7 +135,7 @@
 </div>--}%
 <!-- footerBottomSection -->
 
-<div class="footerBottomSection">
+<div class="footerBottomSection navbar-fixed-bottom">
     <div class="container">
     &copy; 2014, Allright reserved. <a href="#">Terms and Condition</a> | <a href="#">Privacy Policy</a>
 

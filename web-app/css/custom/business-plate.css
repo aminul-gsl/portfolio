@@ -197,7 +197,10 @@ background-color: rgba(255, 255, 255, 0.95);
 .projectImg{max-width:140px}
 .clientSection{background:#fafafa; padding:18px 0; margin-bottom:20px; padding:18px }
 .footerTopSection{background:#f7f7f7; padding:18px 0; border-top: 1px solid #e7e7e7}
-.footerBottomSection{background:#212121; padding:18px 0; color:#fff}
+.footerBottomSection{
+    background:#212121;
+    padding:1px 0;
+    color:#fff}
 
 #topcontrol:hover {color: #a2c753;}
 #topcontrol, #topcontrol:hover {
