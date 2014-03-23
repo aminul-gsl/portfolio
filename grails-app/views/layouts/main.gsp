@@ -210,9 +210,10 @@
 
 
             %{--js for datatable--}%
-        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.min.js')}"></script>
-        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.TableTools.min.js')}"></script>
-        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.ColVis.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js', file: 'datatable.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.js')}"></script>
+       %{-- <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.TableTools.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.ColVis.min.js')}"></script>--}%
         <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.FixedColumns.min.js')}"></script>
         <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.bootstrap.js')}"></script>
         <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.tablesorter.min.js')}"></script>

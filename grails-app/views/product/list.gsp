@@ -150,7 +150,6 @@
 </div>
 
 
-<script type="text/javascript" src="../js/datatable.js"></script>
 
 
 </body>
