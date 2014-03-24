@@ -4,11 +4,19 @@ import com.grails.custom.security.User
 import grails.plugin.springsecurity.annotation.Secured
 
 class AdminController {
+    def springSecurityService
 
-    @Secured(['ROLE_SUPER_ADMIN'])
+    @Secured(['permitAll'])
     def index() {
-        render (view:'/admin/userlist')
+        redirect(controller: 'admin',action: 'home')
     }
+    @Secured(['permitAll'])
+    def home() {
+        def userList = User.getAll()
+        render(view: 'userlist', model: [userList:userList])
+    }
+
+
     @Secured(['ROLE_SUPER_ADMIN'])
     def save(){
         User user=new User()
@@ -30,7 +38,7 @@ class AdminController {
             render (view:'/admin/userlist')
         }else{
             flash.message = "User Created successfully"
-            render (view:'/dashboard/index')
+           redirect(controller: 'admin',action: 'home')
         }
     }
     }

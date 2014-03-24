@@ -75,7 +75,8 @@ class UserController {
     @Secured(['ROLE_SUPER_ADMIN'])
     def list() {
         //will show User list including Create New User button and edit/delete existing user
-        render (view:'/admin/userlist')
+        /*render (view:'/admin/userlist')*/
+        redirect(controller: 'admin',action: 'home')
     }
     @Secured(['ROLE_SUPER_ADMIN'])
     def create() {
@@ -124,7 +125,7 @@ class UserController {
         Role adminRole = Role.findByAuthority('ROLE_ADMIN');
         new UserRole(user: savedUser,role: adminRole).save()
         flash.message = "Admin user created successfully"
-        redirect(action: 'list')
+        redirect(controller: 'admin', action: 'home')
     }
     @Secured(['permitAll'])
     def checkAvailable(String userName){

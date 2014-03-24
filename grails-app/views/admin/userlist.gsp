@@ -88,133 +88,25 @@
 </thead>
 <tbody>
 
-<tr>
-    <td>KMSMC</td>
-    <td>Mr. </td>
-    <td>abdul matin Ali neoaj</td>
-    <td>abdulMatinMoKabir@gmail.com</td>
-    <td>88001733514242</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-             <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
+<g:each in="${userList}" var="user">
 
-<tr>
-    <td>KMSMC</td>
-    <td>Md. </td>
-    <td>Kabir</td>
-    <td>abdulla al manum@gmail.com</td>
-    <td>88001733514242</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
+          <tr>
+              <td>${user?.username}</td>
+              <td>${user?.firstName}</td>
+              <td>${user?.lastName}</td>
+              <td>${user?.email}</td>
+              <td>${user?.telephone}</td>
+              <td>${user?.lastLogin}</td>
+              <td>${user?.enabled}</td>
+              <td class="actions ">
+                  <div class="btn-group">
+                      <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
+                      <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+                  </div>
+              </td>
+          </tr>
 
-<tr>
-    <td>KMSMC</td>
-    <td>Mr. </td>
-    <td>abdul matin</td>
-    <td>abdulMatinMoKabir@gmail.com</td>
-    <td>88001733514242</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>KMSMC</td>
-    <td>Md. </td>
-    <td>Kabir</td>
-    <td>abdulla al manum@gmail.com</td>
-    <td>88001733514242</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>KMSMC</td>
-    <td>Mr. </td>
-    <td>abdul matin</td>
-    <td>abdulMatinMoKabir@gmail.com</td>
-    <td>88001733514242</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>KMSMC</td>
-    <td>Md. </td>
-    <td>Kabir</td>
-    <td>abdulla al manum@gmail.com</td>
-    <td>88001733514242</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>KMSMC</td>
-    <td>Mr. </td>
-    <td>abdul matin</td>
-    <td>abdulMatinMoKabir@gmail.com</td>
-    <td>88001733514242</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>KMSMC</td>
-    <td>Md. </td>
-    <td>Khalil</td>
-    <td>mkubd212@gmail.com</td>
-    <td>090909090</td>
-    <td>12/12/2012:5.30</td>
-    <td>Enabled</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
+    </g:each>
 </tbody>
 </table>
 </div>
