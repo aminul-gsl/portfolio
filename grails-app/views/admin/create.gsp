@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>Hajj Management | Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="layout" content="main">
 
-    <title>User List</title>
+    <title>CreateUser </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -69,50 +67,54 @@
 </div>
 <fieldset>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">User Name</label>
+    <label class="col-md-2 control-label" for="username">User Name *</label>
     <div class="col-md-8 required">
         <input name="username" class="form-control" id="username" placeholder="Please enter User Name"/>
         <span id="somehiddendiv" style="display: none; color: mediumseagreen"/>
     </div>
 </div>
     <div class="form-group required">
-        <label class="col-md-2 control-label" for="post_id">First Name</label>
+        <label class="col-md-2 control-label" for="firstName">First Name *</label>
         <div class="col-md-8 required">
             <input name="firstName" class="form-control" id="firstName" placeholder="Please enter First Name"/>
         </div>
     </div>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">Last Name</label>
+    <label class="col-md-2 control-label" for="lastName">Last Name *</label>
     <div class="col-md-8 required">
         <input name="lastName" class="form-control" id="lastName" placeholder="Please enter Last Name"/>
     </div>
 </div>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">Email</label>
+    <label class="col-md-2 control-label" for="email">Email *</label>
     <div class="col-md-8 required">
         <input name="email" class="form-control" id="email" placeholder="Please enter Email Id"/>
     </div>
 </div>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">Telephone</label>
+    <label class="col-md-2 control-label" for="telephone">Telephone *</label>
     <div class="col-md-8 required">
-        <input name="telephone" class="form-control" id="telephone" placeholder="Please enter User Name"/>
+        <input name="telephone" class="form-control" id="telephone" placeholder="Please enter Telephone No"/>
     </div>
 </div>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">User Name</label>
+    <label class="col-md-2 control-label" for="password">Password *</label>
     <div class="col-md-8 required">
-        <input name="password" class="form-control" id="password" placeholder="Please enter User Name"/>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Please enter Password"/>
     </div>
 </div>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">User Name</label>
+    <label class="col-md-2 control-label" for="confirm">Confirm Password</label>
     <div class="col-md-8 required">
-        <input name="password" class="form-control" id="password" placeholder="Please enter User Name"/>
+        <input type="password" name="confirm" class="form-control" id="confirm" placeholder="Please Reenter The Password"/>
     </div>
 </div>
-    <div class="x" style="padding-left: 115px">
-        <label>Is Active</label> <g:checkBox name="enabled" id="enabled" value="true"/>
+
+
+    <div class="check">
+        <label  style="padding-top:0px;" class="col-md-2 control-label">Active Status</label>
+        <input type="radio" name="enabled" id="enabled" value="true"/> <label>Enable</label>
+        <input type="radio" name="enabled" id="enabled" value="false"/> <label>Disable</label>
     </div>
 
 
@@ -139,15 +141,21 @@
         $('#createAdmin').validate({
             errorElement: 'span',
             rules: {
-                fullName: {
-                    required: true
-                },
                 username: {
                     required: true
+                },
+                 firstName: {
+                    required: true
+                },
+                lastName:{
+                    required:true
                 },
                 email: {
                     required: true,
                         email:true
+                },
+                telephone:{
+                    required:true
                 },
                 password: {
                     required: true,
@@ -159,21 +167,29 @@
                 }
             } ,
             messages: {
-                fullName: {
-                    required: "Provide your full name"
-                },
                 username: {
-                    required: "Select a username"
+                    required: "Provide a username"
+
+                },
+                  firstName: {
+                    required: "Provide User's First name"
+                },
+                lastName:{
+                    required: "Provide User's Last Name"
                 },
                 email: {
-                    required: "Provide your email",
+                    required: "Provide User's email Id",
                         email: "Email not valid."
+                },
+                telephone:{
+                    required: "Provide User's Phone No."
                 },
 
                 password: {
                     required: "Specify a password.",
                     minlength: "Minimum 6 character."
                 }
+
             }
         });
         $("#username").blur(function(){

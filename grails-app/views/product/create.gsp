@@ -63,19 +63,20 @@
 <div id="data" class="panel-body">
 
 <div class="Resumes form">
-<form  method="post" accept-charset="utf-8" id="" class="form-horizontal" action='${resource(dir:'', file:'')}'>
+<form  method="post" accept-charset="utf-8" id="createProduct" class="form-horizontal" action='${resource(dir:'', file:'')}'>
 
 
         <div style="display:none;">
     <input type="hidden" value="POST" name="_method">
 </div>
 <fieldset>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="name">Name</label>
-    <div class="col-md-8 required">
-        <input name="name" class="form-control" id="name" placeholder="Please enter Product Name"/>
+    <div class="form-group">
+        <label for="name" class="col-md-2 control-label">Name</label>
+        <div class="col-md-8">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Please enter Name"/>
+        </div>
     </div>
-</div>
+
     <div class="form-group required">
         <label class="col-md-2 control-label" for="description">Description</label>
         <div class="col-md-8 required">
@@ -83,11 +84,11 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="price" class="col-md-2 control-label">Contact #</label>
-        <div class="col-md-8">
-            <input type="text" name="price" class="form-control" id="price" placeholder="Please enter price"/>
-        </div>
+    <label for="price" class="col-md-2 control-label">Price #</label>
+    <div class="col-md-8">
+        <input type="text" name="price" class="form-control" id="price" placeholder="Please enter price"/>
     </div>
+</div>
 
 <div class="form-group">
     <label for="title" class="col-md-2 control-label">&nbsp;</label>
@@ -105,9 +106,36 @@
 </div>
 <div class="col-md-1"></div>
 
-<!--/content end-->
+<script>
+    jQuery(function ($) {
+        $('#createProduct').validate({
+            errorElement: 'span',
+            rules: {
 
+                description:{
+                    required:true
+                },
+                price:{
+                    required:true,
+                    isNumeric:true
+                } ,
+                name:{
+                    required:true
+                }
+            } ,
+            messages: {
 
-<!-- JS -->
+                description:{
+                    required: "Enter Product Description"
+                },
+                price: {
+                    required: "Enter Product Price"
+                }
+
+            }
+        });
+
+    });
+</script>
 </body>
 </html>

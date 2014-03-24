@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>Portfolio Managment | Admin</title>
+    <title>Portfolio Managment | Create</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="layout" content="main">
 
@@ -13,9 +13,19 @@
     <!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
+
+
 </head>
 <!-- HTML code from Bootply.com editor -->
-<body>
+<body> <script>
+    $(function() {
+        $( "#publishDateYear" ).datepicker()
+            $( "#expirationsDateYear" ).datepicker({
+                showButtonPanel: true
+            });
+    });
+</script>
 <!-- Wrap all page content here -->
 <!-- Fixed navbar -->
 <div class="topHeaderSection breadcrumbs">
@@ -63,10 +73,9 @@
 <div id="data" class="panel-body">
 
 <div class="Resumes form">
-<form  method="post" accept-charset="utf-8" id="" class="form-horizontal" action='${resource(dir:'', file:'')}'>
+<form  method="post" accept-charset="utf-8" id="createPortfolio" class="createPortfolio form-horizontal" action='${resource(dir:'portfolio', file:'index')}'>
 
-
-        <div style="display:none;">
+ <div style="display:none;">
     <input type="hidden" value="POST" name="_method">
 </div>
 <fieldset>
@@ -79,10 +88,11 @@
     <div class="form-group required">
         <label for="portfolioType" class="col-md-2 control-label">Portfolio Type</label>
         <div class="col-md-8">
-            <select name="portfolioType" class="form-control selectpicker" id="portfolioType" placeholder="Please select Portfolio Type" data-size="10" data-live-search="true"/>
-            <option value="0">IT</option>
-            <option value="1">Catering</option>
-            <option value="2">Trading</option>
+            <select name="portfolioType" class="form-control selectpicker" id="portfolioType" data-size="10" data-live-search="true"/>
+            <option value="0">Construction</option>
+            <option value="1">IT</option>
+            <option value="2">Catering</option>
+            <option value="3">Trading</option>
         </select>
         </div>
     </div>
@@ -94,133 +104,31 @@
         </div>
     </div>
 
-    <div class="x" style="padding-left: 115px">
-        <label>Scope</label> <g:checkBox name="scope" id="scope" value="true"/>
-    </div>
 
+    <div class="scope" style="padding-top:0px;padding-bottom:5px">
+        <label   class="col-md-2 control-label" style="padding-top:0px;">Scope</label>
+        <input type="radio" name="scope" id="scope" value="false"/> <label>Public</label>
+        <input type="radio" name="scope" id="scope" value="true"/> <label>Private</label>
+    </div>
     <div class="form-group">
-        <label class="col-md-2 control-label" for="publishDate">Publish Date</label>
-        <div class="col-md-2">
-            <select name="publishDate" class="form-control selectpicker" id="publishDate" placeholder="Please select a day" data-size="10" data-live-search="true"/>
-            <option value="0">Select day</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-        </select>
-        </div>
+        <label class="col-md-2 control-label" for="publishDateYear">Publish Date</label>
+
         <div class="col-md-3">
-            <select name="publishDate" class="form-control selectpicker" id="publishDate" placeholder="Please select Work of Experience" data-size="10" data-live-search="true"/>
-            <option value="0">Select Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-        </div>
-        <div class="col-md-3">
-            <div class="input-group date" id="publishDate" data-date="1992 ">
-                <input class="form-control" id="publishDate" type="text" value="1992" readonly="readonly" name="publishDate"/>
+            <div class="input-group date add-on" id="publishDateYear" data-date="1992 ">
+                <input class="form-control" id="publishDateYear" type="text"  readonly="readonly" name="publishDateYear"/>
                 <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2 control-label" for="expirationsDate">Expirations Date</label>
-        <div class="col-md-2">
-            <select name="expirationsDate" class="form-control selectpicker" id="expirationsDate_day" placeholder="Please select a day" data-size="10" data-live-search="true"/>
-            <option value="0">Select day</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-        </select>
-        </div>
+        <label class="col-md-2 control-label" for="expirationsDateYear">Expirations Date</label>
         <div class="col-md-3">
-            <select name="expirationsDate" class="form-control selectpicker" id="expirationsDate_month" placeholder="Please select Work of Experience" data-size="10" data-live-search="true"/>
-            <option value="0">Select Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
+        <div class="input-group date add-on" id="expirationsDateYear" data-date="1992 ">
+            <input class="form-control" id="expirationsDateYear" type="text"data-date="1992 " readonly="readonly" name="expirationsDateYear"/>
+            <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
         </div>
-        <div class="col-md-3">
-            <div class="input-group date" id="expirationsYear" data-date="1992 ">
-                <input class="form-control" id="expirationsDate_year" type="text" value="1992" readonly="readonly" name="expirationsYear"/>
-                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-            </div>
         </div>
+
     </div>
 <div class="form-group">
     <label for="title" class="col-md-2 control-label">&nbsp;</label>
@@ -238,9 +146,50 @@
 </div>
 <div class="col-md-1"></div>
 
-<!--/content end-->
 
+<script>
+    jQuery(function ($) {
+        $('#createPortfolio').validate({
+            errorElement: 'span',
+            rules: {
+                name: {
+                    required: true
+                },
+                portfolioType: {
+                    required: true
+                },
+                description:{
+                    required:true
+                },
+                publishDateYear: {
+                    required: true
+                },
+                expirationsDateYear:{
+                    required:true
+                }
+            } ,
+            messages: {
+                name: {
+                    required: "Provide a name"
 
-<!-- JS -->
+                },
+                portfolioType: {
+                    required: "Select a Portfolio Type"
+                },
+                description:{
+                    required: "Enter portfolio Description"
+                },
+                publishDateYear: {
+                    required: "Enter the Publish Date"
+                },
+                expirationsDateYear:{
+                    required: "Enter the Expirations Date."
+                }
+
+            }
+        });
+
+    });
+</script>
 </body>
 </html>
