@@ -5,9 +5,6 @@
     <title>Create Product  | Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="layout" content="main">
-    <link href="css/hajj-theme.css" rel="stylesheet" />
-
-    <link rel="stylesheet" type="text/css" href="css/application.css" />
 
     <!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>

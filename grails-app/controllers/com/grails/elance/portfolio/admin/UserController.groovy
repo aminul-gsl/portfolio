@@ -24,7 +24,7 @@ class UserController {
             redirect(controller: 'login')
         }
         //show profile information with update link of profile
-        render(view: 'profile',model: [user:user])
+        render(view: '/admin/profile',model: [user:user])
     }
     @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
     def update(){

@@ -59,6 +59,9 @@
 <div class="panel-heading clearfix">
     <div class="icons pull-left">
         <h2 style="display: inline-block; margin: 0;">User list</h2>
+        <g:if test="${flash.message}">
+            <h4 style="color:#4C8FBD;"> ${flash.message}</h4>
+        </g:if>
     </div>
     <div class="toolbar pull-right">
         <div class="btn-group">

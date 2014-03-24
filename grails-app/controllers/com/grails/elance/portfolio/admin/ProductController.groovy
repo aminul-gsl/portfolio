@@ -5,18 +5,20 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.userdetails.GrailsUser
 
 
-@Secured(['permitAll'])
+
 class ProductController {
     def springSecurityService
-    def index() {
-        redirect(action: 'list')
-    }
 
+    @Secured(['permitAll'])
+    def index() {
+        render(view: 'product')
+    }
+    @Secured(['permitAll'])
     def detail() {
         render(view: 'detail')
     }
 
-    @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
     def list() {
         GrailsUser loggedUser = springSecurityService.principal
         if(!loggedUser){
