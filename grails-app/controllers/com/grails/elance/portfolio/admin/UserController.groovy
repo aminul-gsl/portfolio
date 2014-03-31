@@ -104,7 +104,7 @@ class UserController {
             return
         }
         if (!params.username){
-            flash.message = "Please fill all required fields."
+            flash.message = "Please fill all required fields.."
             render (view:'/admin/userlist')
             return
         }
