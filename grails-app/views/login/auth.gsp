@@ -26,7 +26,7 @@
     </g:if>
     <form action='${postUrl}'  role="form" method='POST' id='loginForm' class='form-signin ' autocomplete='off'>
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" name='j_username' id='username' class="form-control" placeholder="Email address" required autofocus>
+        <input type="text" name='j_username' id='username' class="form-control" placeholder="Username" required autofocus>
         <input type="password" class="form-control" name='j_password' id='password' placeholder="Password" required>
         <label class="checkbox">
             <input type="checkbox" value="remember-me"> Remember me

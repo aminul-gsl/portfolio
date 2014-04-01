@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main">
 
-    <title>CreateUser </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>CreateUser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+    <style type="text/css">
+        .read-only-label {
+            color: blue;
+        }
+    </style>
 </head>
 <!-- HTML code from Bootply.com editor -->
 <body>
@@ -24,12 +29,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${g.createLink(uri: '/')}"><img src="${resource(dir: 'images/custom', file: 'logo.png')}" alt="Portfolio solution" /></a>
+                <a class="navbar-brand" href="${g.createLink(uri: '/')}"><img
+                        src="${resource(dir: 'images/custom', file: 'logo.png')}" alt="Portfolio solution"/></a>
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right breadcrumb">
-                    <li ><a href="#">Admin User</a></li>
-                    <li class="active"><a href="${g.createLink(controller: 'user',action: 'create')}">Create</a></li>
+                    <li><a href="#">Admin User</a></li>
+                    <li class="active"><a href="${g.createLink(controller: 'user', action: 'create')}">Create</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -38,101 +45,136 @@
 
 <!-- Begin page content -->
 <div class="container">
-<div class="row">
-      <div class="col-md-1"></div>
+    <div class="row">
+        <div class="col-md-1"></div>
 
-<article class="col-md-12">
-<div id="main-content">
-<div class="panel panel-default">
-<div class="panel-heading clearfix">
-    <div class="icons pull-left">
-        <h2 style="display: inline-block; margin: 0;">Add User</h2>
-    </div>
-    <div class="toolbar pull-right">
-        <div class="btn-group">
-            <a href="${g.createLink(controller: 'user',action: 'list')}" class="btn btn-primary" title="User List">
-                <i class="fa fa-list"></i>
-            </a>
-        </div>
-    </div>
-</div>
-<div id="data" class="panel-body">
+        <article class="col-md-12">
+            <div id="main-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <div class="icons pull-left">
+                            <h2 style="display: inline-block; margin: 0;">Add User</h2>
+                        </div>
+                        <div class="toolbar pull-right">
+                            <div class="btn-group">
+                                <a href="${g.createLink(controller: 'user', action: 'list')}" class="btn btn-primary"
+                                   title="User List">
+                                    <i class="fa fa-list"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-<div class="Resumes form">
-<form  method="post" accept-charset="utf-8" id="createAdmin" class="form-horizontal" action='${resource(dir:'user', file:'saveAdmin')}'>
+                    <div id="data" class="panel-body">
+                        <div>
+                            <g:hasErrors bean="${user}">
+                                <ul>
+                                    <g:eachError var="err" bean="${user}">
+                                        <li>${err}</li>
+                                    </g:eachError>
+                                </ul>
+                            </g:hasErrors>
+                        </div>
+                        <div class="Resumes form">
+                            <form method="post" accept-charset="utf-8" id="createAdmin" class="form-horizontal"
+                                  action='${resource(dir: 'user', file: 'saveAdmin')}'>
+                                <g:hiddenField name="id" value="${user?.id}"/>
+                                <fieldset>
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label" for="username">User Name *</label>
 
+                                        <div class="col-md-8 required">
+                                            <g:if test="${user?.id}">
+                                                <label class="control-label read-only-label">${user?.username}</label>
+                                            </g:if>
+                                            <g:else>
+                                                <g:textField name="username" value="${user?.username}" class="form-control uneditable-input" id="username"
+                                                             placeholder="Please enter User Name"/>
+                                                <span id="somehiddendiv" style="display: none; color: mediumseagreen"/>
+                                            </g:else>
 
-        <div style="display:none;">
-    <input type="hidden" value="POST" name="_method">
-</div>
-<fieldset>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="username">User Name *</label>
-    <div class="col-md-8 required">
-        <input name="username" class="form-control" id="username" placeholder="Please enter User Name"/>
-        <span id="somehiddendiv" style="display: none; color: mediumseagreen"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label" for="firstName">First Name *</label>
+
+                                        <div class="col-md-8 required">
+                                            <g:textField name="firstName" value="${user?.firstName}" class="form-control" id="firstName"
+                                                   placeholder="Please enter First Name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label" for="lastName">Last Name *</label>
+
+                                        <div class="col-md-8 required">
+                                            <g:textField name="lastName" value="${user?.lastName}" class="form-control" id="lastName"
+                                                   placeholder="Please enter Last Name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label" for="email">Email *</label>
+
+                                        <div class="col-md-8 required">
+                                            <g:textField name="email" value="${user?.email}" class="form-control" id="email"
+                                                   placeholder="Please enter Email Id"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label" for="telephone">Telephone *</label>
+
+                                        <div class="col-md-8 required">
+                                            <g:textField name="telephone" value="${user?.telephone}" class="form-control" id="telephone"
+                                                   placeholder="Please enter Telephone No"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label" for="password">Password *</label>
+
+                                        <div class="col-md-8 required">
+                                            <g:passwordField name="password" class="form-control" id="password"
+                                                   placeholder="Please enter Password"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label" for="confirm">Confirm Password</label>
+
+                                        <div class="col-md-8 required">
+                                            <g:passwordField name="confirm" class="form-control" id="confirm"
+                                                   placeholder="Please Reenter The Password"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label class="col-md-2 control-label">Admin Status</label>
+                                        <g:radioGroup name="enabled" labels="['Enable','Disable']" values="['true','false']" value="${user?.enabled}" >
+                                            <label class="radio-inline">${it.label} ${it.radio} </label>
+                                        </g:radioGroup>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">&nbsp;</label>
+
+                                        <div class="col-md-8">
+                                            <input type="reset" value="Reset" class="btn btn-primary"/>
+                                            <input type="submit" value="${user?.id?'Update':'Submit'}" class="btn btn-primary"/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </article>
     </div>
-</div>
-    <div class="form-group required">
-        <label class="col-md-2 control-label" for="firstName">First Name *</label>
-        <div class="col-md-8 required">
-            <input name="firstName" class="form-control" id="firstName" placeholder="Please enter First Name"/>
-        </div>
-    </div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="lastName">Last Name *</label>
-    <div class="col-md-8 required">
-        <input name="lastName" class="form-control" id="lastName" placeholder="Please enter Last Name"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="email">Email *</label>
-    <div class="col-md-8 required">
-        <input name="email" class="form-control" id="email" placeholder="Please enter Email Id"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="telephone">Telephone *</label>
-    <div class="col-md-8 required">
-        <input name="telephone" class="form-control" id="telephone" placeholder="Please enter Telephone No"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="password">Password *</label>
-    <div class="col-md-8 required">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Please enter Password"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label" for="confirm">Confirm Password</label>
-    <div class="col-md-8 required">
-        <input type="password" name="confirm" class="form-control" id="confirm" placeholder="Please Reenter The Password"/>
-    </div>
-</div>
-<div class="form-group required">
-    <label class="col-md-2 control-label">Admin Status</label>
-    <label class="radio-inline">
-        <input type="radio" name="enabled" id="radio1" value="true" checked=""> Enable
-    </label>
-    <label class="radio-inline">
-        <input type="radio" name="enabled" id="radio2" value="false"> Disable
-    </label>
 </div>
 
-<div class="form-group">
-    <label class="col-md-2 control-label">&nbsp;</label>
-    <div class="col-md-8">
-        <input type="submit" value="Submit" class="btn btn-primary"/>
-    </div>
-</div>
-</fieldset>
-</form>
-</div>
-</div>
-</div>
-</article>
-</div>
-</div>
 <div class="col-md-1"></div>
 
 <!--/content end-->
@@ -196,7 +238,7 @@
         $("#username").blur(function(){
             $("#somehiddendiv").html(" ");
             if($(this).length > 0) {
-                var url = "${createLink(controller:'user', action:'checkAvailable')}"
+                var url = "${createLink(controller: 'user', action: 'checkAvailable')}"
                  // async ajax request pass username entered as id parameter
                  $.getJSON( url, { userName:$(this).val() }, function(json){
                     if(!json.available) {

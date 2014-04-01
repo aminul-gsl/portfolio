@@ -3,6 +3,7 @@ package com.grails.elance.portfolio.admin
 import com.grails.custom.security.Role
 import com.grails.custom.security.User
 import com.grails.custom.security.UserRole
+import com.grails.elance.portfolio.Portfolio
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.userdetails.GrailsUser
@@ -13,7 +14,7 @@ class UserController {
     def index() {
         redirect(action: 'profile')
     }
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
     def profile() {
         GrailsUser loggedUser = springSecurityService.principal
         if(!loggedUser){
@@ -74,58 +75,76 @@ class UserController {
 
     @Secured(['ROLE_SUPER_ADMIN'])
     def list() {
-        //will show User list including Create New User button and edit/delete existing user
-        /*render (view:'/admin/userlist')*/
-        redirect(controller: 'admin',action: 'home')
+        def loggedUser = springSecurityService.principal
+        def userList = User.findAllByUsernameNotEqual(loggedUser.username)
+        render(view: '/admin/userlist', model: [userList:userList])
     }
     @Secured(['ROLE_SUPER_ADMIN'])
-    def create() {
-        GrailsUser loggedUser = springSecurityService.principal
-        if(!loggedUser){
-            redirect(controller: 'login')
-        }
-        User user = User.read(loggedUser.id)
+    def updateAdmin(Long id){
+        User user = User.read(id)
         if(!user){
-            redirect(controller: 'login')
+            redirect(action: 'list')
+            return
         }
-        //show profile information with update link of profile
         render(view: '/admin/create',model: [user:user])
     }
     @Secured(['ROLE_SUPER_ADMIN'])
-    def saveAdmin() {
-        GrailsUser loggedUser = springSecurityService.principal
-        if(!loggedUser){
-            redirect(controller: 'login')
+    def delete(Long id){
+        User user = User.get(id)
+        if(!user){
+            flash.message="User not found."
+            redirect(action: 'list')
             return
         }
+        Collection<UserRole> userRoles = UserRole.findAllByUser(user);
+        userRoles*.delete();
+        user.delete()
+        flash.message="User deleted successfully"
+        redirect(action: 'list')
+    }
+
+    @Secured(['ROLE_SUPER_ADMIN'])
+    def create() {
+        //show profile information with update link of profile
+        render(view: '/admin/create')
+    }
+    @Secured(['ROLE_SUPER_ADMIN'])
+    def saveAdmin() {
+        println(params)
 
         if (!request.method == 'POST') {
             redirect(action: 'list')
             return
         }
-        if (!params.username){
-            flash.message = "Please fill all required fields.."
-            render (view:'/admin/userlist')
+        if(params.id){
+            User oldUser = User.get(params.getLong('id'))
+            oldUser.properties = params
+            if (!oldUser.validate()) {
+                render (view: '/admin/create',model: [user: oldUser])
+                return
+            }
+            flash.message = "Admin user updated successfully"
+            User savedUser = oldUser.save(flash:true)
+            redirect(action: 'list')
             return
         }
-        User user = new User(params)
-        user.lastLogin=new Date();
-        if (!user.validate()) {
-            render (view: '/admin/userlist',model: [user: user])
-            return
-        }
-        //save user
-        User savedUser = user.save()
+            User newUser = new User(params)
+            newUser.lastLogin=new Date();
+            if (!newUser.validate()) {
+                render (view: '/admin/create',model: [user: newUser])
+                return
+            }
+
+        User savedUser = newUser.save()
         if (!savedUser) {
-            flash.message = "Unable to save admin User"
-            render (view: '/admin/userlist',model: [user: user])
+            render (view: '/admin/create',model: [user: savedUser])
             return
         }
 
         Role adminRole = Role.findByAuthority('ROLE_ADMIN');
         new UserRole(user: savedUser,role: adminRole).save()
         flash.message = "Admin user created successfully"
-        redirect(controller: 'admin', action: 'home')
+        redirect(action: 'list')
     }
     @Secured(['permitAll'])
     def checkAvailable(String userName){

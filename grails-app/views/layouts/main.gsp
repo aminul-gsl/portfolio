@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="${resource(dir: 'css/font-awesome-4.0.3', file: 'font-awesome.min.css')}"
           type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/bootstrap/', file: 'bootstrap-modal.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css/bootstrap', file: 'bootstrap-modal-bs3patch.css')}"
-          type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/bootstrap', file: 'bootstrap-modal-bs3patch.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datepicker3.css')}" type="text/css">
 
 
     %{--css for datatable--}%
@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'DT_ColVis.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'DT_TableTools.css')}" type="text/css">
 
-    <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'datepicker.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'responsive-tables.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'responsive-tables.css')}" type="text/css">
     %{--<link rel="stylesheet" href="${resource(dir: 'css/datatable', file: 'hajj-theme.css')}" type="text/css">--}%
@@ -150,6 +149,7 @@
 
 %{--for bootstrap--}%
 <script type="text/javascript" src="${resource(dir: 'js/bootstrap', file: 'bootstrap.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap-datepicker.js')}"></script>
 
 
 <!-- JS Implementing Plugins -->

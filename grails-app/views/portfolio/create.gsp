@@ -1,3 +1,4 @@
+<%@ page import="com.grails.elance.portfolio.admin.ScopeType; com.grails.elance.portfolio.admin.PortfolioType" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,6 @@
     <title>Portfolio Managment | Create</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="layout" content="main">
-
-    <link href="css/hajj-theme.css" rel="stylesheet" />
-
-    <link rel="stylesheet" type="text/css" href="css/application.css" />
 
     <!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -80,49 +77,47 @@
 </div>
 <fieldset>
 <div class="form-group required">
-    <label class="col-md-2 control-label" for="post_id">Name</label>
+    <label class="col-md-2 control-label" for="name">Name</label>
     <div class="col-md-8 required">
-        <input name="name" class="form-control" id="name" placeholder="Please enter Portfolio Name"/>
+        <g:textField value="${portfolio?.name}" name="name" class="form-control" id="name" placeholder="Please Enter Portfolio Name"/>
     </div>
 </div>
     <div class="form-group required">
         <label for="portfolioType" class="col-md-2 control-label">Portfolio Type</label>
         <div class="col-md-8">
-            <select name="portfolioType" class="form-control selectpicker" id="portfolioType" data-size="10" data-live-search="true"/>
-            <option value="0">Construction</option>
-            <option value="1">IT</option>
-            <option value="2">Catering</option>
-            <option value="3">Trading</option>
-        </select>
+            <g:select name="portfolioType" value="${portfolio?.portfolioType?.key}" class="form-control selectpicker" from="${PortfolioType.values()}" optionKey="key" />
         </div>
     </div>
 
     <div class="form-group required">
         <label class="col-md-2 control-label" for="description">Description</label>
         <div class="col-md-8 required">
-            <textarea class="form-control" name="description" id="description" ></textarea>
+            <g:textArea value="${portfolio?.description}" class="form-control" name="description" id="description" />
         </div>
     </div>
 
 
     <div class="scope" style="padding-top:0px;padding-bottom:5px">
-        <label   class="col-md-2 control-label" style="padding-top:0px;">Scope</label>
-        <input type="radio" name="scope" id="scope" value="false"/> <label>Public</label>
-        <input type="radio" name="scope" id="scope" value="true"/> <label>Private</label>
+        <label   class="col-md-2 control-label">Scope</label>
+        <g:radioGroup name="scope" labels="${ScopeType.values()}" values="${ScopeType.values()}" value="${portfolio?.scope?.key}" >
+            <label class="radio-inline">${it.label} ${it.radio} </label>
+        </g:radioGroup>
     </div>
-    <div class="form-group">
+    %{--<div class="form-group" id="sandbox-container">
         <label class="col-md-2 control-label" for="publishDateYear">Publish Date</label>
 
-        <div class="col-md-3">
-            <div class="input-group date add-on" id="publishDateYear" data-date="1992 ">
-                <input class="form-control" id="publishDateYear" type="text"  readonly="readonly" name="publishDateYear"/>
-                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-            </div>
+        <div class="col-md-3 input-group date">
+                <input id="publishDateDiv" type="text" value="${new Date()}" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
         </div>
-    </div>
+    </div>--}%
+    <div id="sandbox-container" class="span5 col-md-5"><div class="input-group date">
+        <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+    </div></div>
     <div class="form-group">
         <label class="col-md-2 control-label" for="expirationsDateYear">Expirations Date</label>
         <div class="col-md-3">
+            <g:datePicker name="myDate" value="${new Date()}"
+                          default="${new Date().plus(7)}"/>
         <div class="input-group date add-on" id="expirationsDateYear" data-date="1992 ">
             <input class="form-control" id="expirationsDateYear" type="text"data-date="1992 " readonly="readonly" name="expirationsDateYear"/>
             <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
@@ -149,6 +144,12 @@
 
 <script>
     jQuery(function ($) {
+        $('#sandbox-container .input-group.date').datepicker({
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+
         $('#createPortfolio').validate({
             errorElement: 'span',
             rules: {

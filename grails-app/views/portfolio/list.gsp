@@ -49,6 +49,7 @@
 <div class="panel-heading clearfix">
     <div class="icons pull-left">
         <h2 style="display: inline-block; margin: 0;">Portfolio list</h2>
+        <h5>Click Add product action button to add product</h5>
     </div>
     <div class="toolbar pull-right">
         <div class="btn-group">

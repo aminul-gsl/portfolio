@@ -100,11 +100,11 @@
               <td>${user?.email}</td>
               <td>${user?.telephone}</td>
               <td>${user?.lastLogin}</td>
-              <td>${user?.enabled}</td>
+              <td>${user?.enabled==true?"Enabled":"Disabled"}</td>
               <td class="actions ">
                   <div class="btn-group">
-                      <a class="btn btn-warning" href="#" title="Edit"><i class="fa fa-eye"></i></a>
-                      <a class="btn btn-danger delete" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+                      <a class="btn btn-warning" href="${g.createLink(controller: 'user',action: 'updateAdmin',params: [id:user?.id])}" title="Edit"><i class="fa fa-eye"></i></a>
+                      <a class="btn btn-danger delete" href="${g.createLink(controller: 'user',action: 'delete',params: [id:user?.id])}" title="Delete"><i class="fa fa-trash-o"></i></a>
                   </div>
               </td>
           </tr>

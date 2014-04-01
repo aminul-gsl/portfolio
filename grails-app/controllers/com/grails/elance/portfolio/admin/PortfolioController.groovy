@@ -1,6 +1,7 @@
 package com.grails.elance.portfolio.admin
 
 import com.grails.custom.security.User
+import com.grails.elance.portfolio.Portfolio
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.userdetails.GrailsUser
 
@@ -27,15 +28,8 @@ class PortfolioController {
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
     def create(){
-        GrailsUser loggedUser = springSecurityService.principal
-        if(!loggedUser){
-            redirect(controller: 'login')
-        }
-        User user = User.read(loggedUser.id)
-        if(!user){
-            redirect(controller: 'login')
-        }
         //show profile information with update link of profile
-        render(view: '/portfolio/create',model: [user:user])
+        Portfolio portfolio = null
+        render(view: '/portfolio/create',model: [portfolio:portfolio])
     }
 }

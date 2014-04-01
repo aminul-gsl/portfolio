@@ -32,9 +32,9 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/portfolio"
+            url = "jdbc:mysql://mysql-portfolio.jelastic.servint.net/portfolio"
             username = "root"
-            password = "root"
+            password = "A12JKevOqv"
             properties {
                // Documentation for Tomcat JDBC Pool
                // http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Common_Attributes
