@@ -86,6 +86,7 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        imageindirect.basePath="d:/GSL"
     }
     production {
         grails.logging.jul.usebridge = false
@@ -123,6 +124,7 @@ grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
+	'/**/portfolio/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll']
