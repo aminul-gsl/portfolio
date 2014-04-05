@@ -8,7 +8,6 @@ enum ScopeType {
     Private("Private")
 
     final String value
-    final String name
     ScopeType(String value) {
         this.value = value
     }

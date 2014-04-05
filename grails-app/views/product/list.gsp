@@ -28,9 +28,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right breadcrumb">
-                    <li ><a href="#">Portfolio</a></li>
-                    <li ><a href="#">Product</a></li>
-                    <li class="active"><a href="${g.createLink(controller: 'portfolio',action: 'list')}">List</a></li>
+                    <li><a href="${g.createLink(controller: 'portfolio', action: 'list')}">Portfolio</a></li>
+                    <li><a href="${g.createLink(controller: 'product', action: 'list', params: [id: portfolio?.id])}">Product</a>
+                    </li>
+                    <li class="active"><a href="${g.createLink(controller: 'product', action: 'list', params: [id: portfolio?.id])}">List</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -47,13 +48,16 @@
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
     <div class="icons pull-left">
-        <h2 style="display: inline-block; margin: 0;">Product list</h2>
+        <h2 style="display: inline-block; margin: 0;">Product list of <span style="color: green;">${portfolio.name}</span></h2>
+        <g:if test="${flash.message}">
+            <h4 style="color:#4C8FBD;">${flash.message}</h4>
+        </g:if>
     </div>
     <div class="toolbar pull-right">
         <div class="btn-group">
 
             %{--add the create page--}%
-            <a href="${g.createLink(controller: 'product',action: 'create')}" class="btn btn-primary">
+            <a href="${g.createLink(controller: 'product',action: 'create',params: [id:portfolio.id])}" class="btn btn-primary">
                 <i class="fa fa-plus"></i>
             </a>
             %{--add the list page--}%
@@ -72,82 +76,30 @@
 </tr>
 </thead>
 <tbody>
-
-<tr>
-    <td>Online Document paper</td>
-    <td>This is paper that is contains information a company.  </td>
-    <td>100.00</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" title="Add Attachment" href="#">
-                <i class="fa fa-download"></i>
-            </a>
-            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>Offline Document paper</td>
-    <td>This is paper that is contains information a company. in offlije </td>
-    <td>120.00</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" title="Add Attachment" href="#">
-                <i class="fa fa-download"></i>
-            </a>
-            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>Online Document paper</td>
-    <td>This is paper that is contains information a company.  </td>
-    <td>100.00</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" title="Add Attachment" href="#">
-                <i class="fa fa-download"></i>
-            </a>
-            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>Online Document paper</td>
-    <td>This is paper that is contains information a company.  </td>
-    <td>100.00</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" title="Add Attachment" href="#">
-                <i class="fa fa-download"></i>
-            </a>
-            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
-<tr>
-    <td>Online Document paper</td>
-    <td>This is paper that is contains information a company.  </td>
-    <td>100.00</td>
-    <td class="actions ">
-        <div class="btn-group">
-            <a class="btn btn-warning" title="Add Attachment" href="#">
-                <i class="fa fa-download"></i>
-            </a>
-            <a class="btn btn-warning" href="#"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o"></i></a>
-        </div>
-    </td>
-</tr>
-
+<g:each in="${productList}" var="product">
+    <tr>
+        <td>${product.name}</td>
+        <td>${product.description} </td>
+        <td><g:formatNumber number="${product.price}" type="number"
+                            maxFractionDigits="2" roundingMode="HALF_DOWN" /></td>
+        <td class="actions ">
+            <div class="btn-group">
+                <a class="btn btn-warning" title="Add Attachment" href="${g.createLink(controller: 'product',action: 'attachment',params: [id:product?.id])}">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </a>
+                <a class="btn btn-warning" title="Add Image" href="${g.createLink(controller: 'product',action: 'image',params: [id:product?.id])}">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </a>
+                <a class="btn btn-warning"
+                   href="${g.createLink(controller: 'product', action: 'edit', params: [id: product?.id])}"
+                   title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                <a class="btn btn-danger delete" onclick="return confirm('Are you sure delete product?')"
+                   href="${g.createLink(controller: 'product', action: 'delete', params: [id: product?.id])}"
+                   title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
+            </div>
+        </td>
+    </tr>
+</g:each>
 </tbody>
 </table>
 </div>

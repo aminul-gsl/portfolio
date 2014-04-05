@@ -20,7 +20,13 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right breadcrumb">
-                        <li class="active"><a href="${g.createLink(controller: 'portfolio',action: 'list')}">Portfolios</a></li>
+                        <sec:ifLoggedIn>
+                            <li class="active"><a href="${g.createLink(controller: 'portfolio',action: 'list')}">Portfolios</a></li>
+                        </sec:ifLoggedIn>
+                        <sec:ifNotLoggedIn>
+                            <li class="active"><a href="${g.createLink(uri: '/')}">Portfolios</a></li>
+                        </sec:ifNotLoggedIn>
+
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -30,29 +36,16 @@
     <div class="services">
         <div class="container">
             <div class="row">
+            <g:each in="${portfolioList}" var="portfolio">
                 <div class="col-md-3">
-                    <a href="${g.createLink(controller: 'product',params: [id:212])}"><img src="${resource(dir: 'images/custom', file: 'bootstrap-templates-office3.png')}" class="" title="project one"></a>
-                    <h3><a class="hover-effect" href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}">Huge Work</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                    <a href="${g.createLink(controller: 'product',action: 'index',params: [id:portfolio.id])}"><ii:imageTag indirect-imagename="${portfolio.logoName}" title="${portfolio.name}" /></a>
+                    <h3><a class="hover-effect" href="${g.createLink(controller: 'product',action: 'index',params: [id:portfolio.id])}">${portfolio.name}</a></h3>
+                    <p>${portfolio.description}</p>
                 </div>
-                <div class="col-md-3">
-                    <a href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}"><img src="${resource(dir: 'images/custom', file: 'bootstrap-templates-office2.png')}" class="" title="project one"></a>
-
-                    <h3><a class="hover-effect" href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}">Huge Work</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                </div>
-                <div class="col-md-3">
-                    <a href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}"><img src="${resource(dir: 'images/custom', file: 'bootstrap-templates-office1.png')}" class="" title="project one"></a>
-
-                    <h3><a class="hover-effect" href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}">Huge Work</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                </div>
-                <div class="col-md-3">
-                    <a href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}"><img src="${resource(dir: 'images/custom', file: 'bootstrap-templates-office4.png')}" class="" title="project one"></a>
-
-                    <h3><a class="hover-effect" href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}">Huge Work</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                </div>
+            </g:each>
+            <g:if test="${!portfolioList}">
+                <p class="alert-warning">No portfolio available</p>
+            </g:if>
             </div>
         </div>
     </div>

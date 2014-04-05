@@ -5,6 +5,7 @@ import com.grails.elance.portfolio.Portfolio
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.userdetails.GrailsUser
+import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
@@ -19,16 +20,8 @@ class PortfolioController {
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
     def list() {
-        GrailsUser loggedUser = springSecurityService.principal
-        if(!loggedUser){
-            redirect(controller: 'login')
-        }
-        User user = User.read(loggedUser.id)
-        if(!user){
-            redirect(controller: 'login')
-        }
-        //show profile information with update link of profile
-        render(view: '/portfolio/list',model: [user:user])
+        def portfolioList = Portfolio.findAll()
+        render(view: 'list',model: [portfolioList:portfolioList])
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
     def create(){
@@ -37,35 +30,149 @@ class PortfolioController {
         render(view: '/portfolio/create',model: [portfolio:portfolio])
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
-    def attachment(){
-        render (view:'attachment')
+    def edit(Long id){
+        Portfolio portfolio = Portfolio.get(id)
+        if(!portfolio){
+            flash.message="Portfolio not found."
+            redirect(action: 'list')
+            return
+        }
+        render(view: '/portfolio/create',model: [portfolio:portfolio])
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
-    def saveAttachment(){
-        println("hello")
-        String clientID=Integer.toString(10003)
-        MultipartHttpServletRequest mpr = (MultipartHttpServletRequest) request;
-        CommonsMultipartFile file = (CommonsMultipartFile) mpr.getFile("document")
-        def originalFilename=file.originalFilename
-        originalFilename = originalFilename.replaceAll(" ", "-")
-        imageIndirectService.storeImage(file,clientID+originalFilename)
-        def clientImage="/clientPhotos/" + clientID+"/"+originalFilename
+    def save(PortfolioCommand portfolioCommand){
+        if (!request.method == 'POST') {
+            redirect(action: 'create')
+            return
+        }
+        if (portfolioCommand.hasErrors()) {
+            render (view: 'create',model:[portfolio: portfolioCommand])
+//            redirect(action: 'create',chainModel:[portfolio: portfolioCommand])
+            return
+        }
+        Portfolio portfolio
+        MultipartFile uploadedFile = null
+        String logoName=""
+        String fileName
+        String fileTobeStoredInDirPath
+        String message = ""
+        if(params.id){
+            portfolio = Portfolio.get(params.getLong('id'))
+            if(!portfolio){
+                flash.message="Portfolio not found."
+                redirect(action: 'list')
+                return
+            }
+            try{
+                if (request instanceof MultipartHttpServletRequest){
+                    //Get the file's name from request
+                    fileName = request.getFileNames()[0]
+                    //Get a reference to the uploaded file.
+                    uploadedFile = request.getFile(fileName)
+                    if (uploadedFile.empty) {
+                        logoName =portfolio.logoName
+                    }else {
+                        logoName =UUID.randomUUID().toString()+".${uploadedFile.originalFilename.split("\\.")[-1]}"
+                        fileTobeStoredInDirPath = grailsApplication.config.imageindirect.basePath
+                        //create new directory if not exist
 
-        def result=[success:true , imagePath:clientImage]
-        render result as JSON
+                        imageIndirectService.storeImage(uploadedFile,logoName)
+                    }
+
+                }
+            }
+            catch (Exception e){
+                flash.error = 'File upload failed due to internal errors. Please try again'
+                render (view: 'create',model:[portfolio: portfolioCommand])
+                return
+
+            }
+            portfolio.properties = portfolioCommand.properties
+            portfolio.logoName=logoName
+            message="Portfolio Updated successfully"
+
+        }else {
+
+            try{
+                if (request instanceof MultipartHttpServletRequest){
+                    //Get the file's name from request
+                    fileName = request.getFileNames()[0]
+                    //Get a reference to the uploaded file.
+                    uploadedFile = request.getFile(fileName)
+                    /*def filesize = uploadedFile.size
+                    def fileD = uploadedFile.name
+                    def fielDs= uploadedFile.originalFilename
+                    def sodes = uploadedFile.contentType
+                    println(filesize+"sedf "+ fileD+" file "+fielDs+" dws"+sodes)*/
+                    logoName =UUID.randomUUID().toString()+".${uploadedFile.originalFilename.split("\\.")[-1]}"
+                    fileTobeStoredInDirPath = grailsApplication.config.imageindirect.basePath
+                    //create new directory if not exist
+                    File theDir = new File(fileTobeStoredInDirPath)
+                    if (!theDir.exists()) {
+                        theDir.mkdir()
+                    }
+                    imageIndirectService.storeImage(uploadedFile,logoName)
+                }
+                if (uploadedFile.empty) {
+                    flash.error = 'Please upload a logo image for your portfolio'
+                    render (view: 'create',model:[portfolio: portfolioCommand])
+                    return
+                }
+
+
+            }
+            catch (Exception e){
+                flash.error = 'File upload failed due to internal errors. Please try again'
+                render (view: 'create',model:[portfolio: portfolioCommand])
+                return
+
+            }
+            portfolio = new Portfolio(portfolioCommand.properties)
+            portfolio.logoName=logoName
+            message="Portfolio Added successfully"
+        }
+
+
+        if (!portfolio.validate()) {
+            render (view: 'create',model:[portfolio: portfolio])
+            return
+        }
+        if (!portfolio.save()) {
+            render (view: 'create',model:[portfolio: portfolio])
+            return
+        }
+        flash.message = message
+        redirect(action: 'list')
+
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
-    def download(){
-        def url=params.url
-        println(grailsApplication.config.imageindirect.basePath+params.url);
-        def files = new File(grailsApplication.config.imageindirect.basePath+params.url) //Full path of a file
-        if (files.exists()) {
-            response.setContentType("application/octet-stream")
-            response.setHeader("Content-disposition", "attachment;filename=Picture.jpg") //Please filename must be add with its extension .jpg,.png,.pdf,.doc otherwise it cant detect the file
-            response.outputStream << files.bytes
-        } else {
-            println("I am not a file")
-            render(view: 'attachment')
+    def delete(Long id){
+        Portfolio portfolio = Portfolio.get(id)
+        if(!portfolio){
+            flash.message="Portfolio not found."
+            redirect(action: 'list')
+            return
+        }
+        portfolio.delete()
+        flash.message="Portfolio deleted successfully"
+        redirect(action: 'list')
+    }
+}
+class PortfolioCommand{
+    Long id
+    String name
+    PortfolioType portfolioType     //Used Enam.. List Value are (Construction. IT, Catering, Trading)
+    String description
+    ScopeType scope
+    Date publishDate
+    Date expireDate
+    String logoName
+    static constraints = {
+        scope  validator: {val, obj ->
+            if (!val){
+                return "portfolio.scope.required.message"
+            }
         }
     }
+
 }

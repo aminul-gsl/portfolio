@@ -27,8 +27,10 @@
                   processData:false,
                   success: function (data){
                    var url=data.imagePath;
+                   alert(url);
                    var uploadImage=data.imagePath.split('/').join('%2F');
-                   var image="${createLink(controller: 'imageIndirect', action: 'index')}?imageName="+uploadImage;
+%{--//                   var image="${createLink(controller: 'imageIndirect', action: 'index')}?imageName="+uploadImage;--}%
+                   var image="${createLink(controller: 'imageIndirect', action: 'index')}?imageName="+"%2FclientPhotos%2F10003%2FAtwari-Pic.-21.3.14-400x300.jpg";
                    $("#showImage").show();
                    $("#image").attr('src',image);
                    $("#url").attr('value',url);
@@ -57,11 +59,11 @@
             </p>
         </form>
 
-        <div id="showImage">
+        <div id="showImage3">
             <form name="downloadFile" id="downloadFile" action="${createLink(controller: 'demo', action: 'download')}"
                   method="post">
                 <input type="text" name="url" id="url" hidden="" value=""/>
-                <ii:imageTag indirect-imagename="" id="image" width="255px" height="150px"/>
+                <ii:imageTag indirect-imagename="10003Atwari-Pic.-21.3.14-400x300.jpg" id="image" width="255px" height="150px"/>
                 <input type="submit" name="download" class="btn btn-default" value="Download"/>
             </form>
         </div>

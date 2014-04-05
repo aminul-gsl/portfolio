@@ -11,9 +11,10 @@ class Portfolio {
     ScopeType scope
     Date publishDate
     Date expireDate
+    Date createdOn = new Date()
+    String logoName
 
     static constraints = {
-        //fields are by default nullable false.
-//        name(nullable: false)
+
     }
 }

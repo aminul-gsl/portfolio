@@ -13,7 +13,8 @@
           type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/bootstrap/', file: 'bootstrap-modal.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/bootstrap', file: 'bootstrap-modal-bs3patch.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datepicker3.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/datepicker', file: 'datepicker.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.10.3.full.min.css')}" type="text/css">
 
 
     %{--css for datatable--}%
@@ -45,7 +46,10 @@
         /*height: 100%;*/
         overflow-x: hidden;
     }
-
+    .error {
+        border-color: #A94442;
+        color: #A94442;
+    }
     </style>
 </head>
 
@@ -149,7 +153,7 @@
 
 %{--for bootstrap--}%
 <script type="text/javascript" src="${resource(dir: 'js/bootstrap', file: 'bootstrap.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap-datepicker.js')}"></script>
+%{--<script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap-datepicker.js')}"></script>--}%
 
 
 <!-- JS Implementing Plugins -->
@@ -189,7 +193,7 @@
 <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.dataTables.bootstrap.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'jquery.tablesorter.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'responsive-tables.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'js/datatable', file: 'bootstrap-datepicker.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js/datepicker', file: 'bootstrap-datepicker.min.js')}"></script>
 
 
 <r:script>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="general"/>
-    <title>Portfolio App - Home</title>
+    <title>Portfolio App - Product detail</title>
 
 </head>
 
@@ -23,9 +23,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right breadcrumb">
-                    <li><a href="${g.createLink(uri: '/')}">Portfolios</a></li>
-                    <li ><a href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}">Products</a></li>
-                    <li class="active"><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2108])}">Detail</a></li>
+                    <li><a href="${g.createLink(uri: '/')}">Portfolio</a></li>
+                    <li ><a href="${g.createLink(controller: 'product',action: 'index',params: [id:product?.portfolio?.id])}">Products</a></li>
+                    <li class="active"><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:product?.id])}">Detail</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -35,103 +35,34 @@
 <div class="serviceBlock">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-compress"></i>
-                    <div class="desc">
-
-                        <h4>Fully Responsive</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <h3><a href="#">${product.name} Images</a></h3>
+            <g:each in="${imageList}" var="image">
+                    <div class="col-md-3">
+                        <ii:imageTag indirect-imagename="${image.imageUrl}" title="${image.name}" />
+                        <h3><a class="hover-effect" href="#">${image.name}</a></h3>
+                        <p>${image.description}</p>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-code"></i>
-                    <div class="desc">
-
-                        <h4>HTML5 + CSS3</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-thumbs-up"></i>
-                    <div class="desc">
-
-                        <h4>Launch Ready</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
+            </g:each>
         </div>
-        <hr>
+        <hr/>
         <div class="row">
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-desktop"></i>
-                    <div class="desc">
+            <h3><a href="#">${product.name} attachments</a></h3>
+            <g:each in="${attachmentList}" var="attachment">
 
-                        <h4>Fully Responsive</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                <div class="col-md-4">
+                    <div class="clearfix">
+                        <a href="${g.createLink(controller: 'product',action: 'download',params: [id:attachment.id])}" title="Download"> <i class="fa fa-download"></i></a>
+                        <div class="desc">
+
+                            <h4>${attachment?.name}</h4>
+                            <p>${attachment?.description} </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-html5"></i>
-                    <div class="desc">
-
-                        <h4>HTML5 + CSS3</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-css3"></i>
-                    <div class="desc">
-
-                        <h4>Launch Ready</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
+            </g:each>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-github"></i>
-                    <div class="desc">
 
-                        <h4>Fully Responsive</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-android"></i>
-                    <div class="desc">
 
-                        <h4>HTML5 + CSS3</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="clearfix">
-                    <i class="fa fa-tablet"></i>
-                    <div class="desc">
-
-                        <h4>Launch Ready</h4>
-                        <p>Lorem ipsum dolor sit amet, Morem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

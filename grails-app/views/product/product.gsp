@@ -24,7 +24,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right breadcrumb">
                        <li ><a href="${g.createLink(uri: '/')}">Portfolios</a></li>
-                    <li class="active"><a href="${g.createLink(controller: 'product',action: 'index',params: [id:210])}"> Products</a></li>
+                    <li class="active"><a href="${g.createLink(controller: 'product',action: 'index',params: [id:portfolio?.id])}"> Products</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -35,89 +35,22 @@
     <div class="container">
         <div class="ourServices">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="cntr">
-                        <img src="${resource(dir: 'images/custom', file: 'Office.png')}" class="img-circle"
-                             title="project one">
+                <g:each in="${productList}" var="product">
+                    <div class="col-md-3">
+                        <div class="cntr">
+                            <a href="${g.createLink(controller: 'product',action: 'detail',params: [id:product.id])}"><ii:imageTag indirect-imagename="${product.logoName}" title="${product.name}" class="img-circle"/></a>
+                                 <h3><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:product.id])}">${product.name}</a></h3>
+                        </div>
 
-                        <h3><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">Responsive Design</a></h3>
+                        <p>
+                            ${product.description}
+                            <br><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:product.id])}">more details</a>
+                        </p>
                     </div>
-
-                    <p>
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                        <br><br><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">more details</a>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="cntr">
-                        <img src="${resource(dir: 'images/custom', file: 'Office.png')}" class="img-circle"
-                             title="project one">
-
-                        <h3><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">CSS & HTML5</a></h3>
-                    </div>
-
-                    <p>
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                        <br><br><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">more details</a>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="cntr">
-                        <img src="${resource(dir: 'images/custom', file: 'Office.png')}" class="img-circle"
-                             title="project one">
-
-                        <h3><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">Clean</a></h3>
-                    </div>
-
-                    <p>
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                        <br><br><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">more details</a>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="cntr">
-                        <img src="${resource(dir: 'images/custom', file: 'Office.png')}" class="img-circle"
-                             title="project one">
-
-                        <h3><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">SEO Frendly</a></h3>
-                    </div>
-
-                    <p>
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                        <br><br><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">more details</a>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="cntr">
-                        <img src="${resource(dir: 'images/custom', file: 'Office.png')}" class="img-circle"
-                             title="project one">
-
-                        <h3><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">SEO Frendly</a></h3>
-                    </div>
-
-                    <p>
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                        <br><br><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">more details</a>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="cntr">
-                        <img src="${resource(dir: 'images/custom', file: 'Office.png')}" class="img-circle"
-                             title="project one">
-
-                        <h3><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">SEO Frendly</a></h3>
-                    </div>
-
-                    <p>
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                        <br><br><a href="${g.createLink(controller: 'product',action: 'detail',params: [id:2105])}">more details</a>
-                    </p>
-                </div>
+                </g:each>
+                <g:if test="${!productList}">
+                    <p class="alert-warning">No product available for this portfolio</p>
+                </g:if>
             </div>
         </div>
     </div>

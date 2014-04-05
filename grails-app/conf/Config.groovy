@@ -86,13 +86,16 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-        imageindirect.basePath="d:/GSL"
+//        imageindirect.basePath="d:/GSL"
+
     }
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
+imageindirect.basePath=System.getProperty("user.home") +File.separator+ "portfolio"+File.separator+"imagedir"
+grails.databinding.dateFormats = ["dd/MM/yyyy"]
 
 // log4j configuration
 log4j = {
@@ -123,8 +126,8 @@ grails.plugin.springsecurity.authority.className = 'com.grails.custom.security.R
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
+	'/imageIndirect/index/**':                              ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
-	'/**/portfolio/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll']
