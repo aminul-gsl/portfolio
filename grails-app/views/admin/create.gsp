@@ -48,7 +48,6 @@
     <div class="row">
         <div class="col-md-1"></div>
 
-        <article class="col-md-12">
             <div id="main-content">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
@@ -171,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-        </article>
+            </div>
     </div>
 </div>
 

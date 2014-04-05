@@ -28,6 +28,20 @@ class UserController {
         render(view: '/admin/profile',model: [user:user])
     }
     @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
+    def edit() {
+        GrailsUser loggedUser = springSecurityService.principal
+        if(!loggedUser){
+            redirect(controller: 'login')
+        }
+        User user = User.read(loggedUser.id)
+        if(!user){
+            redirect(controller: 'login')
+        }
+        //show profile information with update link of profile
+        render(view: '/admin/editProfile',model: [user:user])
+    }
+
+    /*@Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
     def update(){
         GrailsUser loggedUser = springSecurityService.principal
         if(!loggedUser){
@@ -39,16 +53,9 @@ class UserController {
         }
         //show profile in edit mode with editable fields only
         render(view: 'profileEdit',model: [user:user])
-    }
+    }*/
     @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
     def save(){
-        GrailsUser loggedUser = springSecurityService.principal
-        if(!loggedUser){
-            redirect(controller: 'login')
-        }
-        if (!request.method == 'POST') {
-            redirect(action: 'profile')
-        }
         if (!params.id){
             redirect(action: 'profile')
         }
@@ -63,14 +70,10 @@ class UserController {
             return
         }
         //save user
-        User savedUser = user.save()
-        if(SpringSecurityUtils.ifAnyGranted('ROLE_SUPER_ADMIN')){
-            flash.message = "User Updated successfully"
-            redirect(action: 'list')
-            return
-        }
+        User savedUser = user.save(flash:true)
+        springSecurityService.reauthenticate savedUser.username
         flash.message = "Profile Updated successfully"
-        render(view: 'profile',model: [user:savedUser])
+        redirect(action: 'profile')
     }
 
     @Secured(['ROLE_SUPER_ADMIN'])

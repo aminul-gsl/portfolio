@@ -27,8 +27,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right breadcrumb">
-                    <li ><a href="#">User</a></li>
-                    <li class="active"><a href="${g.createLink(controller: 'user',action: 'list')}">My Profile</a></li>
+                    <li ><a href="${g.createLink(controller: 'home',action: 'index')}">Home</a></li>
+                    <li class="active"><a href="${g.createLink(controller: 'user',action: 'profile')}">My Profile</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -38,20 +38,6 @@
 <div class="container">
     <div class="row">
 
-        %{-- <aside class="col-md-2 id="sidebar" role="navigation">
-         <div id="aside-menu" class="list-group">
-             <a href="pilgrim-list.html" class="list-group-item active">Pilgrim <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="agency-list.html" class="list-group-item">Agency <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="moyallem-list.html" class="list-group-item">Moyallem <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="house-list.html" class="list-group-item">House <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="javascript:void(0);" class="list-group-item">Movement <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="javascript:void(0);" class="list-group-item">Visa Lodgement <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="javascript:void(0);" class="list-group-item">Notice <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="javascript:void(0);" class="list-group-item">SMS <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="javascript:void(0);" class="list-group-item">Report <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-             <a href="javascript:void(0);" class="list-group-item">Settings <span class="pull-right"><i class="fa fa-angle-right fa-lg"></i></a>
-         </div>
-     </aside>--}%
         <div class="col-md-1"></div>
         <article class="col-md-12">
             <div id="main-content">
