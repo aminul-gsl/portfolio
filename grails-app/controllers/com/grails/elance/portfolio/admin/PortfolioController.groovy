@@ -13,6 +13,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 class PortfolioController {
     def springSecurityService
     def imageIndirectService
+    def imageService
     @Secured(['ROLE_SUPER_ADMIN','ROLE_ADMIN'])
     def index() {
          redirect(action: 'list')
@@ -153,8 +154,16 @@ class PortfolioController {
             redirect(action: 'list')
             return
         }
-        portfolio.delete()
-        flash.message="Portfolio deleted successfully"
+        String logoUrl = portfolio.logoName
+        try{
+            portfolio.delete(flush: true)
+            imageService.deleteImage(logoUrl)
+            flash.message="Portfolio deleted successfully"
+        } catch (Exception ex){
+            ex.printStackTrace()
+            flash.message="Unable to delete. Please delete all product(s) first"
+        }
+
         redirect(action: 'list')
     }
 }

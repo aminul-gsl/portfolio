@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest
 class ProductController {
     def springSecurityService
     def imageIndirectService
+    def imageService
 
     @Secured(['permitAll'])
     def index(Long id) {
@@ -173,8 +174,16 @@ class ProductController {
             redirect(controller: 'portfolio', action: 'list')
             return
         }
-        product.delete()
-        flash.message="Portfolio deleted successfully"
+        String logoUrl = product.logoName
+        try{
+            product.delete(flush: true)
+            imageService.deleteImage(logoUrl)
+            flash.message="Product deleted successfully"
+        } catch (Exception ex){
+            ex.printStackTrace()
+            flash.message="Unable to delete. Please delete all attachment(s)/image(s) first"
+        }
+
         redirect(action: 'list',params: [id:portfolioId])
     }
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
@@ -314,15 +323,20 @@ class ProductController {
     @Secured(['ROLE_ADMIN','ROLE_SUPER_ADMIN'])
     def deleteAttachment(Long id){
         Attachment attachment =Attachment.get(params.getLong('id'))
-
         if(!attachment){
             flash.message="Attachment not found."
             redirect(controller: 'portfolio', action: 'list')
             return
         }
         Long productId= attachment.product.id
-        attachment.delete()
-        flash.message="Attachment deleted successfully"
+        boolean delStatus =imageService.deleteImage(attachment.attachmentUrl);
+        if(delStatus){
+            attachment.delete()
+            flash.message="Attachment deleted successfully"
+            redirect(action: 'attachment',params: [id:productId])
+            return
+        }
+        flash.message="Unable to delete."
         redirect(action: 'attachment',params: [id:productId])
 
     }
@@ -488,8 +502,14 @@ class ProductController {
             return
         }
         Long productId= image.product.id
-        image.delete()
-        flash.message="Image deleted successfully"
+        boolean delStatus =imageService.deleteImage(image.imageUrl);
+        if(delStatus){
+            image.delete()
+            flash.message="Image deleted successfully"
+            redirect(action: 'image',params: [id:productId])
+            return
+        }
+        flash.message="Unable to delete."
         redirect(action: 'image',params: [id:productId])
 
     }
